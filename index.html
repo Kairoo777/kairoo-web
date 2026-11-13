@@ -211,7 +211,7 @@ footer{background:var(--dark);border-top:1px solid rgba(247,246,241,.06);padding
     </div>
     <div class="hero-stats">
       <div><div class="hero-stat-num" data-stat="total">6.338</div><div class="hero-stat-label">Ha trabajadas</div></div>
-      <div><div class="hero-stat-num">+40</div><div class="hero-stat-label">Clientes</div></div>
+      <div><div class="hero-stat-num" data-stat="clientes" data-prefix="+">+61</div><div class="hero-stat-label">Clientes</div></div>
       <div><div class="hero-stat-num">24h</div><div class="hero-stat-label">Reporte post-app</div></div>
     </div>
   </div>
@@ -278,7 +278,7 @@ footer{background:var(--dark);border-top:1px solid rgba(247,246,241,.06);padding
         <div class="dif-visual">
           <div class="dif-big" data-stat="total">6.338</div><div class="dif-lbl">Ha totales trabajadas</div>
           <div class="dif-divider"></div>
-          <div class="dif-big">+40</div><div class="dif-lbl">Clientes en Córdoba y zona núcleo</div>
+          <div class="dif-big" data-stat="clientes" data-prefix="+">+61</div><div class="dif-lbl">Clientes en Córdoba y zona núcleo</div>
           <div class="dif-divider"></div>
           <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;color:var(--lime);text-transform:uppercase;letter-spacing:1px;margin-bottom:1.2rem">Operamos en Córdoba y zona núcleo</div>
           <a href="https://wa.me/5493536563684?text=Hola%20buen%20dia%2C%20quisiera%20coordinar%20una%20aplicacion.%20Gracias" target="_blank" class="btn-primary" style="width:100%;justify-content:center">▸ Coordiná tu aplicación</a>
@@ -621,14 +621,14 @@ if(slides.length>1)setInterval(nextSlide,3500);
     body:'{}'
   }).then(function(r){return r.ok?r.json():null;}).then(function(d){
     if(!d||!d.ha_total)return;
-    var v={pulv:d.ha_pulverizacion, sol:d.ha_solidos, total:d.ha_total,
+    var v={pulv:d.ha_pulverizacion, sol:d.ha_solidos, total:d.ha_total, clientes:d.clientes,
            agua:Math.round(d.ha_pulverizacion*AGUA_L_HA), co2:Math.round(d.ha_total*CO2_TN_HA)};
     document.querySelectorAll('[data-stat]').forEach(function(el){
       var n=v[el.dataset.stat]; if(n==null)return;
       if(el.hasAttribute('data-target')){
         el.dataset.target=n;
         if(el.textContent.trim()!=='0') el.textContent=n.toLocaleString('es-AR')+(el.dataset.suffix||'');
-      } else el.textContent=n.toLocaleString('es-AR');
+      } else el.textContent=(el.dataset.prefix||'')+n.toLocaleString('es-AR');
     });
   }).catch(function(){});
 })();
