@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKKADEMY — Curso de Piloto de Dron Aplicador · Edición 2 | Kairoo</title>
+<meta name="description" content="Curso de Piloto de Dron Aplicador, 2ª edición. Dos días: teoría y negocio, y un día a campo donde volás vos. 30 y 31 de octubre, Villa María, Córdoba.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Schibsted+Grotesk:wght@400;500;600;700&family=Onest:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#08282D; --navy-2:#062229; --navy-3:#041A1E; --navy-raised:#0F3940; --navy-line:#1A4D55;
+  --bone:#F7F6F1; --white:#FFFFFF; --bone-2:#ECEBE4; --bone-3:#DCDBD4;
+  --cian:#2FD4CE; --cian-dark:#1FB3AD; --cian-deep:#178F8A; --cian-soft:#D6F7F5;
+  --gris:#898A8E; --gris-ink:#5B5C5F; --gris-2:#6F7074; --negro:#0A0A0A;
+  --font-display:'Unbounded',system-ui,sans-serif; --font-body:'Onest',system-ui,sans-serif;
+  --font-label:'Schibsted Grotesk',system-ui,sans-serif; --font-mono:'Martian Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bone);color:var(--navy);line-height:1.55;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+section{position:relative}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+h1,h2,h3{font-family:var(--font-display);font-weight:600;letter-spacing:.004em;line-height:1.1}
+em{font-style:normal;color:var(--cian-deep)}
+.band{padding:58px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--font-label);font-weight:600;font-size:15px;text-decoration:none;border-radius:10px;padding:14px 24px;transition:.18s var(--ease);cursor:pointer;border:none}
+.btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.btn--primary{background:var(--cian);color:var(--navy)}
+.btn--primary:hover{background:var(--cian-soft);transform:translateY(-2px)}
+.btn--ghost{border:1px solid rgba(247,246,241,.28);color:var(--bone)}
+.btn--ghost:hover{border-color:var(--cian);color:var(--cian);transform:translateY(-2px)}
+.btn--onlight{background:var(--cian-dark);color:var(--white)}
+.btn--onlight:hover{background:var(--cian-deep);transform:translateY(-2px)}
+
+/* top bar */
+.top{position:sticky;top:0;z-index:50;background:rgba(8,40,45,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(247,246,241,.10)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;gap:16px}
+.top-left{display:flex;align-items:center;gap:14px}
+.top-back{font-family:var(--font-label);font-size:13px;font-weight:600;color:var(--bone);text-decoration:none;opacity:.85;white-space:nowrap}
+.top-back:hover{opacity:1;color:var(--cian)}
+.top-logo{height:20px;width:auto}
+.top-cta{font-family:var(--font-label);font-weight:600;font-size:13.5px;background:var(--cian);color:var(--navy);text-decoration:none;padding:9px 16px;border-radius:8px;transition:.18s var(--ease);white-space:nowrap}
+.top-cta:hover{background:var(--cian-soft);transform:translateY(-1px)}
+
+/* HERO */
+.hero{background:var(--navy);color:var(--bone);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(1100px 460px at 50% -30%,rgba(47,212,206,.14),transparent 60%)}
+.hero .wrap{position:relative;padding:48px 28px 54px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.hero-logo{width:min(540px,84vw);height:auto;margin:0 0 14px}
+.edition{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cian);margin:0 0 18px}
+.hero h1{font-size:clamp(28px,4.4vw,52px);max-width:20ch;margin:0 0 16px}
+.hero-lede{font-size:17px;color:var(--bone);opacity:.86;max-width:60ch;margin:0 0 28px}
+.facts{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:0 0 28px;width:100%}
+.fact{flex:1 1 190px;max-width:260px;background:rgba(247,246,241,.04);border:1px solid rgba(47,212,206,.28);border-radius:14px;padding:16px 18px;text-align:left;transition:.25s var(--ease)}
+.fact:hover{border-color:var(--cian);transform:translateY(-3px);background:rgba(47,212,206,.08)}
+.fact .fk{display:block;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cian);margin-bottom:6px}
+.fact b{font-family:var(--font-display);font-weight:600;font-size:18px;color:var(--bone)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+/* APRENDÉS */
+.learn h2{font-size:clamp(24px,3.2vw,38px);text-align:center;max-width:24ch;margin:0 auto 34px}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.vcard{background:var(--white);border:1px solid var(--bone-3);border-radius:18px;padding:30px 28px;transition:.28s var(--ease)}
+.vcard:hover{transform:translateY(-6px);border-color:var(--cian);box-shadow:0 18px 44px rgba(8,40,45,.10)}
+.vic{width:52px;height:52px;border-radius:13px;background:var(--cian-soft);display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:.28s var(--ease)}
+.vic svg{width:26px;height:26px;stroke:var(--cian-deep);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:.28s var(--ease)}
+.vcard:hover .vic{background:var(--cian-dark);transform:scale(1.06)}
+.vcard:hover .vic svg{stroke:#fff}
+.vcard h3{font-size:19px;margin:0 0 8px}
+.vcard p{font-size:14.5px;color:var(--gris-ink)}
+
+/* CRONOGRAMA */
+.cron{background:var(--navy);color:var(--bone)}
+.cron h2{color:var(--bone);text-align:center;font-size:clamp(24px,3.2vw,38px);letter-spacing:.02em;margin:0 0 34px}
+.days{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.day{background:var(--navy-raised);border:1px solid rgba(247,246,241,.12);border-radius:18px;padding:26px 30px}
+.day .d{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;color:var(--cian);margin-bottom:8px}
+.day h3{color:var(--bone);font-size:20px;margin:0 0 4px}
+.day .sub{font-family:var(--font-label);font-size:13px;color:var(--bone);opacity:.68;margin:0 0 18px}
+.day ul{list-style:none}
+.day li{display:flex;gap:11px;padding:8px 0;font-size:14.5px;color:var(--bone);opacity:.9;align-items:center}
+.day li::before{content:"";flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:var(--cian);margin-top:1px;opacity:.5}
+.day li.hl{color:var(--cian);font-weight:600;opacity:1}
+.day li.hl::before{opacity:1;box-shadow:0 0 0 4px rgba(47,212,206,.16)}
+.day li.brk{opacity:.55;font-style:italic}
+.day li.brk::before{background:var(--gris);opacity:.5}
+.blk-ally{margin-left:auto;flex:0 0 auto;display:inline-flex;align-items:center;opacity:.95}
+.blk-ally img{height:22px;width:auto;max-width:104px;object-fit:contain}
+
+/* ESPECIALISTAS / ALIADOS */
+.aliados{background:var(--navy);color:var(--bone);overflow:hidden}
+.aliados::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(900px 360px at 50% -40%,rgba(47,212,206,.10),transparent 60%)}
+.aliados h2{text-align:center;color:var(--bone);font-size:clamp(22px,3vw,34px);max-width:24ch;margin:0 auto 8px}
+.aliados .lead{text-align:center;color:var(--bone);opacity:.72;font-size:15px;max-width:56ch;margin:0 auto 36px}
+.esp-row{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:center;gap:56px}
+.esp-item{display:flex;flex-direction:column;align-items:center;gap:14px;text-decoration:none;transition:.25s var(--ease)}
+.esp-item:hover{transform:translateY(-4px)}
+.esp-logo{height:72px;display:flex;align-items:center}
+.esp-logo img{height:56px;width:auto;max-width:240px;object-fit:contain}
+.esp-cap{font-family:var(--font-label);font-size:13px;color:var(--gris-ink)}
+.esp-cap b{display:block;font-weight:600;color:var(--bone);font-size:14px}
+.esp-cap .role{color:var(--cian-deep);font-weight:600}
+
+/* INSCRIPCIÓN: becas + beneficios */
+.enroll h2{text-align:center;font-size:clamp(24px,3.2vw,38px);margin:0 auto 34px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+.panel{border-radius:20px;padding:32px;display:flex;flex-direction:column}
+.beca{background:var(--navy);color:var(--bone)}
+.beca .tag{font-family:var(--font-mono);font-size:11px;color:var(--cian);border:1px solid rgba(47,212,206,.4);border-radius:5px;padding:4px 9px;display:inline-block;margin-bottom:14px;align-self:flex-start}
+.beca h3{color:var(--bone);font-size:24px;margin:0 0 8px}
+.beca p{font-size:14.5px;color:var(--bone);opacity:.85;margin:0 0 22px}
+.beca .btn{margin-top:auto;align-self:flex-start}
+.inv{background:var(--white);border:1px solid var(--bone-3)}
+.inv .tag{font-family:var(--font-label);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cian-deep);margin-bottom:14px;display:block}
+.inv h3{font-size:22px;margin:0 0 16px}
+.ben-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.ben{background:var(--bone);border:1px solid var(--bone-3);border-radius:14px;padding:16px;transition:.25s var(--ease)}
+.ben:hover{transform:translateY(-3px);border-color:var(--cian);background:var(--cian-soft)}
+.ben b{display:block;font-family:var(--font-display);font-weight:700;font-size:24px;color:var(--navy);line-height:1}
+.ben span{display:block;font-family:var(--font-label);font-size:11px;color:var(--gris-ink);margin-top:7px;line-height:1.35}
+.ben--hi{background:var(--cian-dark);border-color:var(--cian-dark)}
+.ben--hi b,.ben--hi span{color:#fff}
+.ben--hi:hover{background:var(--cian-deep);border-color:var(--cian-deep)}
+.note{font-size:13px;color:var(--gris-ink);margin:0 0 16px}
+.inv .cta-row{justify-content:flex-start;margin-top:auto}
+.inv .cta-row .btn--ghost{border-color:var(--navy);color:var(--navy)}
+.inv .cta-row .btn--ghost:hover{background:var(--navy);color:var(--bone);border-color:var(--navy)}
+
+/* FINAL */
+.final{background:var(--navy-3);color:var(--bone);text-align:center}
+.final .wrap{padding:52px 28px}
+.final .k{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cian);margin:0 0 10px}
+.final h2{color:var(--bone);font-size:clamp(24px,3.2vw,36px);margin:0 0 10px}
+.final p{color:var(--bone);opacity:.82;margin:0 0 24px}
+
+/* LEGAL */
+.legal{background:var(--bone);border-top:1px solid var(--bone-3)}
+.legal .wrap{padding:26px 28px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.legal p{font-size:12.5px;color:var(--gris-2);max-width:70ch;font-family:var(--font-label)}
+.legal .brand{font-family:var(--font-label);font-size:12.5px;color:var(--gris-ink);font-weight:600}
+
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(8,40,45,.96);backdrop-filter:blur(8px);border-top:1px solid rgba(247,246,241,.12)}
+
+@media(max-width:860px){
+  .vgrid{grid-template-columns:1fr}
+  .days{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr}
+  .ben-grid{grid-template-columns:1fr 1fr}
+  .band{padding:46px 0}
+  .fact{flex:1 1 140px}
+  .esp-row{gap:36px}
+  .sticky{display:block}
+  body{padding-bottom:74px}
+}
+@media(prefers-reduced-motion:reduce){.reveal{transition-duration:.01ms}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="top-left">
+      <a class="top-back" href="./index.html#hero">← kairoo</a>
+      <img class="top-logo" src="./img/akkademy_horizontal.svg" alt="AKKADEMY">
+    </div>
+    <a class="top-cta" href="https://forms.gle/cMowyALcNaVkDwAD7" target="_blank" rel="noopener">Inscribite</a>
+  </div>
+</header>
+
+<section class="hero" id="curso">
+  <div class="wrap">
+    <img class="hero-logo" src="./img/akkademy_horizontal.svg" alt="AKKADEMY">
+    <p class="edition">2ª Edición · Villa María, Córdoba</p>
+    <h1>Formate como <em>piloto de dron aplicador</em></h1>
+    <p class="hero-lede">Aprendé en 2 días lo que a nosotros nos costó 6.000 hectáreas trabajadas. Un día de teoría y negocio, y un día a campo donde <em>volás vos</em>.</p>
+    <div class="facts">
+      <div class="fact"><span class="fk">Dónde</span><b>Villa María, Córdoba</b></div>
+      <div class="fact"><span class="fk">Certifica</span><b>AKKADEMY by Kairoo</b></div>
+      <div class="fact"><span class="fk">Cuándo</span><b>30 y 31 Octubre</b></div>
+      <div class="fact"><span class="fk">Cupo</span><b>20 lugares</b></div>
+    </div>
+    <div class="cta-row">
+      <a class="btn btn--primary" href="https://forms.gle/cMowyALcNaVkDwAD7" target="_blank" rel="noopener">Inscribite <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--ghost" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(Edici%C3%B3n%202)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section class="band learn">
+  <div class="wrap">
+    <h2>De cero a operar un equipo <em>en dos días</em></h2>
+    <div class="vgrid">
+      <div class="vcard reveal">
+        <div class="vic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/></svg></div>
+        <h3>Negocio y números</h3><p>Armar un equipo completo, costos y ROI, y cuánto cobrar por el servicio.</p>
+      </div>
+      <div class="vcard reveal">
+        <div class="vic"><svg viewBox="0 0 24 24"><path d="M12 3s6 6 6 10a6 6 0 0 1-12 0c0-4 6-10 6-10z"/></svg></div>
+        <h3>Aplicación, mezclas y regulación</h3><p>Caldos y mezclas con AgroAdvance, y marco regulatorio RAAC/ANAC con Franco Melgarejo.</p>
+      </div>
+      <div class="vcard reveal">
+        <div class="vic"><svg viewBox="0 0 24 24"><path d="M3 11l18-7-7 18-3-8-8-3z"/></svg></div>
+        <h3>Práctica a campo</h3><p>Mantenimiento del generador y del dron, manejo con joystick, armado de tarea y tarjeteo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band cron" id="cronograma">
+  <div class="wrap">
+    <h2>CRONOGRAMA</h2>
+    <div class="days">
+      <article class="day reveal">
+        <p class="d">DÍA 1 · 30/10 · de 8:00 a 18:15 hs</p>
+        <h3>Teórico y de negocio</h3>
+        <p class="sub">UGR, sede Villa María</p>
+        <ul>
+          <li>Intro y bienvenida</li>
+          <li>Introducción a los drones</li>
+          <li>Armar un equipo completo</li>
+          <li class="brk">Coffee break</li>
+          <li>Costos y ROI</li>
+          <li>Fotogrametría</li>
+          <li class="hl">Almuerzo y networking · 12:30 a 13:30</li>
+          <li class="hl"><span>Marco regulatorio RAAC/ANAC — Franco Melgarejo (virtual)</span><span class="blk-ally" title="Melgarejo"><img src="./img/ally_melgarejo_white.svg" alt="Melgarejo"></span></li>
+          <li>Logística a campo, joystick y apps</li>
+          <li class="hl"><span>Mezclas agroquímicas — AgroAdvance</span><span class="blk-ally" title="AgroAdvance"><img src="./img/ally_agroadvance_white.png" alt="AgroAdvance"></span></li>
+        </ul>
+      </article>
+      <article class="day reveal">
+        <p class="d">DÍA 2 · 31/10 · de 8:00 a 13:30 hs</p>
+        <h3>Práctico a campo</h3>
+        <p class="sub">Campo cercano (a confirmar), Villa María</p>
+        <ul>
+          <li>Mantenimiento del generador</li>
+          <li>Mantenimiento del dron</li>
+          <li class="hl">Manejo del dron y armado de tarea — volás vos</li>
+          <li>Tarjeteo</li>
+          <li class="hl">Cierre y entrega de certificados</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band aliados" id="aliados">
+  <div class="wrap">
+    <h2>Con especialistas invitados</h2>
+    <p class="lead">Bloques a cargo de referentes del sector, además del equipo de Kairoo.</p>
+    <div class="esp-row">
+      <a class="esp-item" href="https://agroadvance.com.ar/" target="_blank" rel="noopener">
+        <div class="esp-logo"><img src="./img/ally_agroadvance_white.png" alt="AgroAdvance"></div>
+        <div class="esp-cap"><b>AgroAdvance</b><span class="role">Mezclas agroquímicas</span></div>
+      </a>
+      <div class="esp-item">
+        <div class="esp-logo"><img src="./img/ally_melgarejo_white.svg" alt="Melgarejo"></div>
+        <div class="esp-cap"><b>Franco Melgarejo</b><span class="role">Marco regulatorio</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band enroll" style="background:var(--bone-2)">
+  <div class="wrap">
+    <h2>Asegurá tu <em>lugar</em></h2>
+    <div class="split">
+      <div class="panel beca reveal">
+        <span class="tag">Postulaciones hasta el 16/10</span>
+        <h3>Beca del 50%</h3>
+        <p>Hay una beca del 50% disponible para esta edición. Postulate completando el formulario — cupos muy limitados.</p>
+        <a class="btn btn--primary" href="https://forms.gle/wNKGBtSJ7rcBQWqG6" target="_blank" rel="noopener">Postulate a la beca <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="panel inv reveal">
+        <span class="tag">Beneficios y descuentos</span>
+        <h3>Promos vigentes</h3>
+        <div class="ben-grid">
+          <div class="ben ben--hi"><b>8% OFF</b><span>Lanzamiento · hasta el 14/10</span></div>
+          <div class="ben"><b>15% OFF</b><span>En dupla, por persona · no acumulable</span></div>
+          <div class="ben"><b>3 cuotas</b><span>Sin interés</span></div>
+          <div class="ben"><b>15% OFF</b><span>Alumnos Agrotecnología UGR</span></div>
+        </div>
+        <p class="note">Los valores del curso se comparten por WhatsApp. Escribinos y te pasamos todo.</p>
+        <div class="cta-row">
+          <a class="btn btn--onlight" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(Edici%C3%B3n%202)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> Consultar por WhatsApp</a>
+          <a class="btn btn--ghost" href="https://forms.gle/cMowyALcNaVkDwAD7" target="_blank" rel="noopener">Inscribite</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <p class="k">Cupo 20 · 2ª edición · Villa María</p>
+    <h2>Reservá tu lugar en la Edición 2</h2>
+    <p>30 y 31 de octubre en Villa María, Córdoba. Escribinos y coordinamos tu inscripción.</p>
+    <div class="cta-row">
+      <a class="btn btn--primary" href="https://forms.gle/cMowyALcNaVkDwAD7" target="_blank" rel="noopener">Inscribite <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--ghost" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(Edici%C3%B3n%202)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section class="legal">
+  <div class="wrap">
+    <span class="brand">AKKADEMY es la academia de pilotos de kairoo</span>
+    <p>Curso introductorio. No habilita por sí solo a operar drones: la habilitación se tramita ante ANAC. Se entrega certificado de participación AKKADEMY by Kairoo.</p>
+  </div>
+</section>
+
+<div class="sticky"><a class="btn btn--primary" href="https://forms.gle/cMowyALcNaVkDwAD7" target="_blank" rel="noopener" style="width:100%">Inscribite al curso</a></div>
+
+<script>
+document.querySelectorAll('.reveal').forEach(function(el){
+  new IntersectionObserver(function(en,ob){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');ob.unobserve(e.target);}});},{threshold:.12}).observe(el);
+});
+</script>
+</body>
+</html>

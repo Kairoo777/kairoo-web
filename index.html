@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kairoo AgTech | Agrointeligencia con Drones</title>
+<meta name="description" content="Pulverización y siembra con drones de precisión en Córdoba y zona núcleo.">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<!-- Fuentes unificadas: Kairoo (Barlow) + AKKADEMY -->
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;300;400;500;600;700;800;900&family=Barlow+Condensed:wght@100;300;400;500;600;700;800;900&family=Unbounded:wght@400;600&family=Schibsted+Grotesk:wght@400;500;600&family=Onest:wght@400;500&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--dark:#08282d;--lime:#e6ff2a;--white:#f7f6f1;--gray:#898a8e;--dark2:#0d3a41;--dark3:#0a3038}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--dark);color:var(--white);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.9rem 5%;background:rgba(8,40,45,0.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(230,255,42,0.1)}
+.nav-logo img{height:36px;width:auto}
+.nav-links{display:flex;gap:1.6rem;list-style:none}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.05rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--lime)}
+.nav-cta{background:var(--lime);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:1.5px;text-transform:uppercase;padding:.55rem 1.2rem;border-radius:4px;text-decoration:none;transition:all .2s}
+.nav-cta:hover{background:var(--white)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px}
+.mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;background:var(--dark2);padding:1.5rem 5% 2rem;border-bottom:1px solid rgba(230,255,42,.1);z-index:199;flex-direction:column;gap:1.2rem}
+.mobile-menu a{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);text-decoration:none}
+.mobile-menu.open{display:flex}
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem;padding:7rem 6% 3.5rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(230,255,42,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(230,255,42,.025) 1px,transparent 1px);background-size:60px 60px}
+.hero-glow{position:absolute;top:-20%;right:-5%;width:500px;height:500px;background:radial-gradient(circle,rgba(230,255,42,.07) 0%,transparent 65%);pointer-events:none}
+.hero-content{position:relative;z-index:2}
+.hero-label{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1rem;letter-spacing:3px;text-transform:uppercase;color:var(--lime);margin-bottom:.9rem;opacity:0;animation:fadeUp .7s .2s forwards}
+.hero-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,5.5vw,6rem);line-height:.95;text-transform:uppercase;opacity:0;animation:fadeUp .7s .4s forwards}
+.hero-title em{font-style:normal;color:var(--lime)}
+.hero-sub{font-size:1.05rem;color:var(--gray);font-weight:300;line-height:1.65;margin-top:1.4rem;opacity:0;animation:fadeUp .7s .6s forwards}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.6rem;opacity:0;animation:fadeUp .7s .8s forwards}
+.hero-stats{display:flex;gap:2rem;margin-top:2rem;flex-wrap:wrap;opacity:0;animation:fadeUp .7s 1s forwards}
+.hero-stat-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.2rem;color:var(--lime);line-height:1}
+.hero-stat-label{font-size:1rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-top:.15rem}
+.hero-visual{position:relative;z-index:2;opacity:0;animation:fadeUp .9s .5s forwards}
+.drone-photo-wrap{position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(230,255,42,0.18);box-shadow:0 30px 70px rgba(0,0,0,.6);aspect-ratio:4/5;width:100%}
+.drone-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 45%;display:block;filter:contrast(1.08) saturate(1.1);transition:transform 8s ease}
+.drone-photo-wrap:hover img{transform:scale(1.04)}
+.drone-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,40,45,.6) 0%,transparent 45%);pointer-events:none}
+.btn-primary{background:var(--lime);color:var(--dark);font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.02rem;letter-spacing:1.5px;text-transform:uppercase;padding:.8rem 1.6rem;border-radius:4px;text-decoration:none;border:none;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary:hover{background:var(--white);transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.02rem;letter-spacing:1.5px;text-transform:uppercase;padding:.8rem 1.6rem;border-radius:4px;text-decoration:none;border:1.5px solid rgba(247,246,241,.2);transition:all .2s;display:inline-flex;align-items:center}
+.btn-secondary:hover{border-color:var(--lime);color:var(--lime)}
+section{padding:4.5rem 5%}
+.sec-inner{max-width:1140px;margin:0 auto}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,3.8vw,3.2rem);text-transform:uppercase;line-height:1.02;margin-bottom:2rem}
+.sec-title em{font-style:normal;color:var(--lime)}
+#impacto{background:var(--dark2);border-top:1px solid rgba(230,255,42,.07);border-bottom:1px solid rgba(230,255,42,.07)}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.impact-card{background:rgba(8,40,45,.7);border:1px solid rgba(230,255,42,.09);padding:2rem 1.5rem;transition:border-color .3s;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6rem}
+.impact-card:hover{border-color:rgba(230,255,42,.35)}
+.impact-icon{font-size:2rem}
+.impact-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.93rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);opacity:.8}
+.impact-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,3vw,2.8rem);color:var(--lime);line-height:1}
+.impact-note{margin-top:1.2rem;padding:.9rem 1.3rem;background:rgba(230,255,42,.04);border:1px solid rgba(230,255,42,.1);border-radius:6px;font-size:1rem;color:var(--gray);line-height:1.6;text-align:center}
+.impact-note strong{color:var(--lime)}
+#servicios{background:var(--dark)}
+.servicios-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px}
+.servicio-card{background:var(--dark2);border:1px solid rgba(247,246,241,.05);transition:all .3s;position:relative;overflow:hidden;border-radius:6px}
+.servicio-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--lime);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.servicio-card:hover::after{transform:scaleX(1)}
+.servicio-card:hover{border-color:rgba(230,255,42,.2);transform:translateY(-3px)}
+.servicio-img{width:100%;height:180px;object-fit:cover;display:block;filter:brightness(.85) saturate(1.1);transition:filter .4s}
+.servicio-card:hover .servicio-img{filter:brightness(.98) saturate(1.2)}
+.servicio-body{padding:1.2rem 1.4rem 1.5rem}
+.servicio-icon{width:36px;height:36px;background:rgba(230,255,42,.12);border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:.7rem;font-size:1.1rem}
+.servicio-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;text-transform:uppercase;margin-bottom:.35rem}
+.servicio-desc{font-size:1.05rem;color:var(--gray);line-height:1.55}
+#proceso{background:var(--dark3);border-top:1px solid rgba(230,255,42,.05)}
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative}
+.pasos::before{content:'';position:absolute;top:27px;left:5%;right:5%;height:2px;background:linear-gradient(to right,var(--lime),rgba(230,255,42,.1));z-index:0}
+.paso{text-align:center;position:relative;z-index:1}
+.paso-num{width:54px;height:54px;background:var(--lime);color:var(--dark);border-radius:50%;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+.paso-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;text-transform:uppercase;margin-bottom:.3rem}
+.paso-desc{font-size:.93rem;color:var(--gray);line-height:1.55}
+#diferencial{background:var(--dark)}
+.dif-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.dif-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-top:1.5rem}
+.dif-list li{display:flex;align-items:flex-start;gap:.8rem;padding:.85rem 1.1rem;background:var(--dark2);border:1px solid rgba(247,246,241,.06);border-radius:5px;font-size:1rem;line-height:1.5;transition:border-color .2s}
+.dif-list li:hover{border-color:rgba(230,255,42,.25)}
+.dif-list li::before{content:'→';color:var(--lime);font-weight:700;flex-shrink:0}
+.dif-visual{background:var(--dark2);border:1px solid rgba(230,255,42,.12);border-radius:10px;padding:2.2rem 1.8rem;text-align:center}
+.dif-big{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.5rem,5vw,4.5rem);color:var(--lime);line-height:1;margin-bottom:.3rem}
+.dif-lbl{font-size:.98rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px}
+.dif-divider{height:1px;background:rgba(247,246,241,.08);margin:1.4rem 0}
+#equipo{background:var(--dark2);border-top:1px solid rgba(230,255,42,.06)}
+.equipo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.miembro-card{background:var(--dark);border:1px solid rgba(247,246,241,.08);border-radius:8px;overflow:hidden;transition:all .3s}
+.miembro-card:hover{border-color:rgba(230,255,42,.3);transform:translateY(-3px)}
+.miembro-avatar{width:100%;aspect-ratio:1;overflow:hidden;background:#000}
+.miembro-avatar img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.miembro-info{padding:1.2rem}
+.miembro-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.15rem;text-transform:uppercase}
+.miembro-role{font-size:.98rem;color:var(--lime);margin:.2rem 0 .6rem;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+.miembro-bio{font-size:1.05rem;color:var(--gray);line-height:1.5}
+.miembro-linkedin{display:inline-flex;align-items:center;gap:.3rem;margin-top:.8rem;font-size:.98rem;color:var(--gray);text-decoration:none;text-transform:uppercase;letter-spacing:1px;border:1px solid rgba(247,246,241,.12);padding:.3rem .7rem;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-weight:600;transition:all .2s}
+.miembro-linkedin:hover{border-color:var(--lime);color:var(--lime)}
+#valores{background:var(--dark)}
+.valores-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px}
+.valor-card{background:var(--dark2);padding:1.8rem;border:1px solid rgba(247,246,241,.05);transition:background .3s}
+.valor-card:hover{background:var(--dark3)}
+.valor-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3rem;color:rgba(230,255,42,.08);line-height:1;margin-bottom:-.3rem}
+.valor-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;text-transform:uppercase;margin-bottom:.4rem}
+.valor-desc{font-size:.97rem;color:var(--gray);line-height:1.6}
+#aliados{background:var(--dark3);border-top:1px solid rgba(230,255,42,.06);text-align:center}
+.aliados-grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2.5rem;margin-top:2rem}
+.aliado-item{display:flex;align-items:center;justify-content:center;padding:1rem 1.5rem;background:rgba(247,246,241,.04);border:1px solid rgba(247,246,241,.08);border-radius:10px;transition:all .3s;min-width:160px}
+.aliado-item:hover{background:rgba(247,246,241,.08);border-color:rgba(230,255,42,.2);transform:translateY(-2px)}
+.aliado-item img{height:60px;width:auto;max-width:180px;object-fit:contain;filter:grayscale(30%)brightness(1.1);transition:filter .3s}
+.aliado-item:hover img{filter:grayscale(0%) brightness(1.15)}
+#contacto{background:var(--dark2);border-top:1px solid rgba(230,255,42,.1)}
+.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem}
+.form-group{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
+.form-group label{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.05rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--gray)}
+.form-group input,.form-group textarea{background:rgba(8,40,45,.9);border:1.5px solid rgba(247,246,241,.12);border-radius:4px;padding:.7rem .85rem;color:var(--white);font-family:'Barlow',sans-serif;font-size:1.02rem;transition:border-color .2s;outline:none;resize:vertical}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--lime)}
+.form-status{display:none;padding:.85rem;border-radius:4px;margin-top:.7rem;font-size:.98rem;text-align:center}
+.form-status.success{background:rgba(230,255,42,.1);border:1px solid rgba(230,255,42,.3);color:var(--lime);display:block}
+.form-status.error{background:rgba(255,80,80,.08);border:1px solid rgba(255,80,80,.25);color:#ff9090;display:block}
+.contacto-info{display:flex;flex-direction:column;gap:1rem}
+.contacto-item{display:flex;align-items:flex-start;gap:.8rem;padding:1rem 1.2rem;background:rgba(8,40,45,.5);border:1px solid rgba(247,246,241,.06);border-radius:5px;text-decoration:none;color:inherit;transition:border-color .2s}
+.contacto-item:hover{border-color:rgba(230,255,42,.3)}
+.contacto-item-icon{font-size:1.2rem;flex-shrink:0}
+.contacto-item-label{font-size:1rem;color:var(--gray);text-transform:uppercase;letter-spacing:1px}
+.contacto-item-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;margin-top:.1rem}
+.social-row{display:flex;gap:.7rem;flex-wrap:wrap}
+.social-btn{background:rgba(8,40,45,.8);border:1px solid rgba(247,246,241,.12);border-radius:4px;padding:.55rem .9rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:1px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:.4rem}
+.social-btn:hover{border-color:var(--lime);color:var(--lime)}
+.contacto-note{background:rgba(230,255,42,.06);border:1px solid rgba(230,255,42,.18);border-radius:5px;padding:.9rem 1.2rem;font-size:.97rem;line-height:1.5}
+.contacto-note strong{color:var(--lime)}
+.bottom-row{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid rgba(230,255,42,.06)}
+#prensa{background:var(--dark3);padding:4rem 5%}
+#galeria{background:var(--dark);padding:4rem 5%}
+.prensa-grid{display:flex;flex-direction:column;gap:1rem}
+.prensa-card{background:var(--dark2);border:1px solid rgba(247,246,241,.08);border-radius:10px;overflow:hidden;transition:all .3s;display:flex;flex-direction:column}
+.prensa-card:hover{border-color:rgba(230,255,42,.3);transform:translateY(-3px)}
+.prensa-card--featured{border-color:rgba(230,255,42,.3);border-width:1.5px}
+.prensa-body{padding:1.2rem;flex:1;display:flex;flex-direction:column;gap:.6rem}
+.prensa-tag{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray)}
+.prensa-tag--video{color:var(--lime)}
+.prensa-medio{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.98rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--lime)}
+.prensa-titulo{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;line-height:1.2;color:var(--white);text-decoration:none;transition:color .2s}
+.prensa-titulo:hover{color:var(--lime)}
+.prensa-desc{font-size:.97rem;color:var(--gray);line-height:1.55;flex:1}
+.prensa-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.7rem;border-top:1px solid rgba(247,246,241,.06)}
+.prensa-fecha{font-size:.93rem;color:var(--gray)}
+.prensa-link{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--lime);text-decoration:none;display:flex;align-items:center;gap:.3rem;transition:gap .2s}
+.prensa-link:hover{gap:.6rem}
+.slideshow{position:relative;width:100%;border-radius:10px;overflow:hidden;border:1px solid rgba(230,255,42,.1);background:#000}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease-in-out}
+.slide.active{opacity:1;position:relative}
+.slide img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:brightness(.92) saturate(1.05)}
+footer{background:var(--dark);border-top:1px solid rgba(247,246,241,.06);padding:1.8rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo-img{height:26px;width:auto}
+.footer-tagline{font-size:1.05rem;color:var(--gray);text-transform:uppercase;letter-spacing:1.5px;margin-top:.3rem}
+.footer-copy{font-size:.98rem;color:var(--gray)}
+.footer-social{color:var(--gray);transition:color .2s,transform .2s;display:flex;align-items:center}
+.footer-social:hover{color:var(--lime);transform:translateY(-2px)}
+.wa-fab{position:fixed;bottom:1.5rem;right:1.5rem;z-index:300;width:52px;height:52px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);text-decoration:none;transition:all .2s;animation:waPulse 2.5s infinite}
+.wa-fab:hover{transform:scale(1.1)}
+.wa-fab svg{width:26px;height:26px;fill:white}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 30px rgba(37,211,102,.7)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1024px){.servicios-grid{grid-template-columns:repeat(2,1fr)}.impact-grid{grid-template-columns:repeat(2,1fr)}.pasos{grid-template-columns:repeat(2,1fr)}.pasos::before{display:none}.bottom-row{grid-template-columns:1fr}}
+@media(max-width:768px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}#hero{grid-template-columns:1fr;padding:6rem 5% 2.5rem;gap:2rem}.drone-photo-wrap{aspect-ratio:16/9}.servicios-grid{grid-template-columns:1fr 1fr}.equipo-grid{grid-template-columns:1fr}.valores-grid{grid-template-columns:1fr}.dif-grid{grid-template-columns:1fr;gap:2rem}.contacto-grid{grid-template-columns:1fr;gap:2rem}}
+@media(max-width:480px){.servicios-grid{grid-template-columns:1fr}.impact-grid{grid-template-columns:1fr 1fr}.pasos{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <a href="#hero" class="nav-logo"><img src="./img/logo.png" alt="Kairoo AgTech"></a>
+  <ul class="nav-links">
+    <li><a href="./akkademy.html">AKKADEMY</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Metodología</a></li>
+    <li><a href="#equipo">Nosotros</a></li>
+    <li><a href="#impacto">Impacto</a></li>
+    <li><a href="#prensa">Prensa</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/5493536563684?text=Hola%20buen%20dia%2C%20quisiera%20pedir%20presupuesto%20y%20mas%20informaci%C3%B3n.%20Gracias" target="_blank" class="nav-cta">▸ Presupuesto</a>
+  <button class="hamburger" id="ham" aria-label="Menú"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./akkademy.html" onclick="closeMobile()">AKKADEMY</a>
+  <a href="#servicios" onclick="closeMobile()">Servicios</a>
+  <a href="#proceso" onclick="closeMobile()">Metodología</a>
+  <a href="#equipo" onclick="closeMobile()">Nosotros</a>
+  <a href="#impacto" onclick="closeMobile()">Impacto</a>
+  <a href="#prensa" onclick="closeMobile()">Prensa</a>
+  <a href="#contacto" onclick="closeMobile()">Contacto</a>
+  <a href="https://wa.me/5493536563684?text=Hola%20buen%20dia%2C%20quisiera%20pedir%20presupuesto.%20Gracias" target="_blank" style="color:var(--lime)">▸ Pedir Presupuesto</a>
+</div>
+
+<section id="hero">
+  <div class="hero-bg"></div><div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-label">Agrointeligencia con drones · Córdoba y zona núcleo</div>
+    <h1 class="hero-title">Pulverización<br>y siembra<br>con <em>drones</em><br>de precisión</h1>
+    <p class="hero-sub">Entramos cuando no podés, sin pisar el lote y con resultados medibles. Cada aplicación ahorra insumos y genera datos para mejores decisiones.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5493536563684?text=Hola%20buen%20dia%2C%20quisiera%20pedir%20presupuesto%20y%20mas%20informaci%C3%B3n.%20Gracias" target="_blank" class="btn-primary">▸ Pedí tu presupuesto</a>
+      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num" data-stat="total">6.338</div><div class="hero-stat-label">Ha trabajadas</div></div>
+      <div><div class="hero-stat-num">+40</div><div class="hero-stat-label">Clientes</div></div>
+      <div><div class="hero-stat-num">24h</div><div class="hero-stat-label">Reporte post-app</div></div>
+    </div>
+  </div>
+  <div class="hero-visual" id="heroVisual">
+    <div class="drone-photo-wrap">
+      <img src="./img/drone.png" alt="Dron agrícola aplicando">
+      <div class="drone-photo-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<section id="impacto">
+  <div class="sec-inner">
+    <h2 class="sec-title reveal">Impacto <em>medible</em> en el campo</h2>
+    <div class="impact-grid">
+      <div class="impact-card reveal"><div class="impact-icon">🚁</div><div class="impact-label">Pulverización</div><div class="impact-num" data-stat="pulv" data-target="5209" data-suffix=" Ha">0</div></div>
+      <div class="impact-card reveal"><div class="impact-icon">🌱</div><div class="impact-label">Siembra / Fertilización</div><div class="impact-num" data-stat="sol" data-target="1130" data-suffix=" Ha">0</div></div>
+      <div class="impact-card reveal"><div class="impact-icon">💧</div><div class="impact-label">Agua Ahorrada</div><div class="impact-num" data-stat="agua" data-target="330772" data-suffix=" L">0</div></div>
+      <div class="impact-card reveal"><div class="impact-icon">🌿</div><div class="impact-label">Evitamos</div><div class="impact-num" data-stat="co2" data-target="31" data-suffix=" Tn CO₂">0</div></div>
+    </div>
+    <div class="impact-note reveal"><strong>¿Cómo calculamos?</strong> Agua: comparamos 75 L/ha terrestre vs 11.5 L/ha dron sobre las <span data-stat="pulv">5.209</span> ha pulverizadas. CO₂: descontamos generador y traslados.</div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="sec-inner">
+    <h2 class="sec-title reveal">Nuestros <em>servicios</em></h2>
+    <div class="servicios-grid">
+      <div class="servicio-card reveal"><img class="servicio-img" src="./img/srv_pulverizacion.png" alt="Pulverización"><div class="servicio-body"><div class="servicio-icon">🚁</div><div class="servicio-title">Pulverización selectiva</div><p class="servicio-desc">Aplicaciones eficientes con bajo volumen y máxima cobertura. Fitosanitarios, fungicidas y herbicidas con precisión centimétrica.</p></div></div>
+      <div class="servicio-card reveal"><img class="servicio-img" src="./img/srv_siembra.png" alt="Siembra"><div class="servicio-body"><div class="servicio-icon">🌱</div><div class="servicio-title">Siembra aérea y fertilización</div><p class="servicio-desc">Coberturas, resiembras, verdeos y aplicación de fertilizantes. Alcanzamos zonas inaccesibles con dosificación variable por NDVI.</p></div></div>
+      <div class="servicio-card reveal"><img class="servicio-img" src="./img/srv_mapeo.png" alt="Mapeo"><div class="servicio-body"><div class="servicio-icon">🛰️</div><div class="servicio-title">Mapeo y monitoreo</div><p class="servicio-desc">Relevamiento con imágenes multiespectrales. Información precisa para mejores decisiones de manejo agronómico.</p></div></div>
+      <div class="servicio-card reveal"><img class="servicio-img" src="./img/srv_id.png" alt="I+D"><div class="servicio-body"><div class="servicio-icon">🔬</div><div class="servicio-title">I+D · Ensayos y validación</div><p class="servicio-desc">Desarrollo y validación de productos agroquímicos y biológicos. Protocolos rigurosos, trazabilidad completa y reporte técnico.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="proceso">
+  <div class="sec-inner">
+    <h2 class="sec-title reveal">Cómo trabajamos <em>en el campo</em></h2>
+    <div class="pasos">
+      <div class="paso reveal"><div class="paso-num">1</div><div class="paso-title">Relevamos el lote</div><p class="paso-desc">Análisis previo con reconocimiento o imagen satelital. Identificamos obstáculos y definimos el plan de vuelo.</p></div>
+      <div class="paso reveal"><div class="paso-num">2</div><div class="paso-title">Definimos la estrategia</div><p class="paso-desc">Junto al productor: dosis, producto, momento y caudal. Trazabilidad desde la carga hasta la descarga.</p></div>
+      <div class="paso reveal"><div class="paso-num">3</div><div class="paso-title">Ejecutamos con precisión</div><p class="paso-desc">Vuelo autónomo con GPS diferencial, boquillas de bajo volumen y sin compactación de suelo.</p></div>
+      <div class="paso reveal"><div class="paso-num">4</div><div class="paso-title">Reporte en 24 h</div><p class="paso-desc">Informe digital con mapa de aplicación, volumen utilizado, fotos del operativo y datos meteorológicos.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="diferencial">
+  <div class="sec-inner">
+    <div class="dif-grid">
+      <div>
+        <h2 class="sec-title reveal">No reemplazamos<br>lo tradicional.<br><em>Lo potenciamos.</em></h2>
+        <ul class="dif-list">
+          <li class="reveal visible">Entramos donde no puede la maquinaria convencional</li>
+          <li class="reveal visible">No pisamos el cultivo ni compactamos el suelo</li>
+          <li class="reveal visible">Mayor velocidad en ventanas críticas post-lluvia</li>
+          <li class="reveal visible">Aplicación uniforme y precisa en toda la superficie</li>
+          <li class="reveal visible">Trazabilidad completa de cada aplicación</li>
+          <li class="reveal visible">Menor uso de agua e insumos — más margen</li>
+        </ul>
+      </div>
+      <div class="reveal visible">
+        <div class="dif-visual">
+          <div class="dif-big" data-stat="total">6.338</div><div class="dif-lbl">Ha totales trabajadas</div>
+          <div class="dif-divider"></div>
+          <div class="dif-big">+40</div><div class="dif-lbl">Clientes en Córdoba y zona núcleo</div>
+          <div class="dif-divider"></div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:700;color:var(--lime);text-transform:uppercase;letter-spacing:1px;margin-bottom:1.2rem">Operamos en Córdoba y zona núcleo</div>
+          <a href="https://wa.me/5493536563684?text=Hola%20buen%20dia%2C%20quisiera%20coordinar%20una%20aplicacion.%20Gracias" target="_blank" class="btn-primary" style="width:100%;justify-content:center">▸ Coordiná tu aplicación</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="equipo">
+  <div class="sec-inner">
+    <h2 class="sec-title reveal">Nuestro <em>equipo</em></h2>
+    <div class="equipo-grid">
+      <div class="miembro-card reveal"><div class="miembro-avatar"><img src="./img/martin.png" alt="Martín Comba"></div><div class="miembro-info"><div class="miembro-name">Martín Comba</div><div class="miembro-role">Director Agronómico</div><p class="miembro-bio">Productor hace 8 años. Especialista en cultivos extensivos y uso responsable de fitosanitarios.</p><a href="https://www.linkedin.com/in/martin-comba-b382a6373/" target="_blank" class="miembro-linkedin">↗ LinkedIn</a></div></div>
+      <div class="miembro-card reveal"><div class="miembro-avatar"><img src="./img/augusto.png" alt="Augusto Annechini"></div><div class="miembro-info"><div class="miembro-name">Augusto Annechini</div><div class="miembro-role">Director Ejecutivo</div><p class="miembro-bio">Emprendedor con experiencia en agrotecnológicas y startups biotech. Lidera estrategia y finanzas.</p><a href="https://www.linkedin.com/in/augusto-annechini/" target="_blank" class="miembro-linkedin">↗ LinkedIn</a></div></div>
+      <div class="miembro-card reveal"><div class="miembro-avatar"><img src="./img/jeremias.png" alt="Jeremías Conrero"></div><div class="miembro-info"><div class="miembro-name">Jeremías Conrero</div><div class="miembro-role">Director Operativo &amp; Piloto</div><p class="miembro-bio">Lidera la operación en campo y el escalamiento de Kairoo. Experiencia en metalmecánica y biotech.</p><a href="https://www.linkedin.com/in/jeremiasconrero/" target="_blank" class="miembro-linkedin">↗ LinkedIn</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AKKADEMY (teaser Edición 2) ===== -->
+<style>
+.ak-teaser{background:#08282D;color:#F7F6F1;position:relative;overflow:hidden;font-family:'Onest',system-ui,sans-serif}
+.ak-teaser::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(700px 320px at 85% -20%,rgba(47,212,206,.12),transparent 60%)}
+.ak-t-wrap{position:relative;max-width:1120px;margin:0 auto;padding:72px 24px;text-align:center}
+.ak-t-head{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:10px}
+.ak-t-new{font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:11px;letter-spacing:.12em;color:#08282D;background:#2FD4CE;padding:4px 10px;border-radius:999px}
+.ak-t-logo{height:28px;width:auto}
+.ak-t-ed{font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#2FD4CE;margin:0 0 16px}
+.ak-t-title{font-family:'Unbounded',sans-serif;font-weight:600;font-size:clamp(24px,3.4vw,38px);line-height:1.14;margin:0 auto 14px;max-width:22ch;color:#F7F6F1}
+.ak-t-title em{font-style:normal;color:#2FD4CE}
+.ak-t-lede{font-family:'Onest',sans-serif;font-size:16px;color:#B2C8CC;max-width:60ch;margin:0 auto 24px;line-height:1.6}
+.ak-t-chips{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:0 auto 26px;padding:0}
+.ak-t-chips li{font-family:'Martian Mono',monospace;font-size:11px;color:#F7F6F1;border:1px solid rgba(247,246,241,.22);border-radius:999px;padding:6px 12px}
+.ak-t-high{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin:0 auto 28px;max-width:640px}
+.ak-t-hi{flex:1 1 240px;background:#0F3940;border:1px solid rgba(47,212,206,.22);border-radius:12px;padding:16px 20px;text-align:left}
+.ak-t-k{display:block;font-family:'Schibsted Grotesk',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#2FD4CE;margin-bottom:6px}
+.ak-t-hi b{font-family:'Onest',sans-serif;font-weight:600;font-size:15.5px;color:#F7F6F1}
+.ak-t-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.ak-t-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Schibsted Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none;border-radius:10px;padding:13px 22px;transition:all .18s}
+.ak-t-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ak-t-btn--p{background:#2FD4CE;color:#08282D}
+.ak-t-btn--p:hover{background:#D6F7F5;transform:translateY(-1px)}
+.ak-t-btn--g{border:1px solid rgba(247,246,241,.28);color:#F7F6F1}
+.ak-t-btn--g:hover{border-color:#2FD4CE;color:#2FD4CE;transform:translateY(-1px)}
+@media(max-width:768px){.ak-t-wrap{padding:56px 20px}.ak-t-hi{flex:1 1 100%}}
+</style>
+<section class="ak-teaser" id="akkademy">
+  <div class="ak-t-wrap">
+    <div class="ak-t-head reveal"><span class="ak-t-new">NUEVO</span><img src="./img/akkademy_horizontal.svg" alt="AKKADEMY" class="ak-t-logo"></div>
+    <p class="ak-t-ed reveal">2ª Edición · Villa María</p>
+    <h2 class="ak-t-title reveal">Curso de <em>Piloto de Dron Aplicador</em></h2>
+    <p class="ak-t-lede reveal">Dos días: teoría y negocio, y un día a campo donde volás vos. La academia de pilotos de kairoo, con certificado AKKADEMY by Kairoo.</p>
+    <ul class="ak-t-chips reveal"><li>30 y 31 de octubre</li><li>Villa María, Córdoba</li><li>Cupo 20</li><li>Certificado AKKADEMY</li></ul>
+    <div class="ak-t-high reveal">
+      <div class="ak-t-hi"><span class="ak-t-k">Lanzamiento</span><b>8% OFF hasta el 14/10</b></div>
+      <div class="ak-t-hi"><span class="ak-t-k">Beca</span><b>Beca del 50% · cierra 16/10</b></div>
+    </div>
+    <div class="ak-t-cta reveal">
+      <a class="ak-t-btn ak-t-btn--p" href="./akkademy.html">Ver el curso <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a class="ak-t-btn ak-t-btn--g" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20curso%20de%20piloto%20de%20dron%20aplicador" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section id="valores">
+  <div class="sec-inner">
+    <h2 class="sec-title reveal">Nuestros <em>valores</em></h2>
+    <div class="valores-grid">
+      <div class="valor-card reveal"><div class="valor-num">01</div><div class="valor-title">Precisión con propósito</div><p class="valor-desc">Drones de última generación y conocimiento agronómico para lograr servicios exactos, optimizar insumos y cuidar el ambiente.</p></div>
+      <div class="valor-card reveal"><div class="valor-num">02</div><div class="valor-title">Confianza que perdura</div><p class="valor-desc">Relaciones sólidas respaldadas por trazabilidad, profesionalismo y experiencia real en campo.</p></div>
+      <div class="valor-card reveal"><div class="valor-num">03</div><div class="valor-title">Profesionalismo</div><p class="valor-desc">Procesos claros, estándares de calidad y foco en resultados concretos que impactan el margen del productor.</p></div>
+      <div class="valor-card reveal"><div class="valor-num">04</div><div class="valor-title">Innovación constante</div><p class="valor-desc">Adoptamos nuevas tecnologías para evolucionar hacia la agrointeligencia basada en datos.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="aliados">
+  <div class="sec-inner">
+    <div class="reveal visible" style="text-align:center">
+      <h2 class="sec-title" style="margin-bottom:1rem">Nos <em>acompañan</em></h2>
+      <p style="color:var(--gray);font-size:1.02rem;margin-bottom:1rem">Empresas e instituciones que confían y trabajan junto a Kairoo.</p>
+      <div class="aliados-grid" style="gap:1.5rem">
+        <div class="aliado-item" style="background:#fff"><img src="./img/innovar_emprender.jpg" alt="Agencia Córdoba Innovar y Emprender"></div>
+        <div class="aliado-item" style="background:#fff"><img src="./img/cordoba40.png" alt="Córdoba 4.0 · Secretaría de Ciencia y Tecnología"></div>
+        <div class="aliado-item" style="background:#fff"><img src="./img/gobierno_cordoba.png" alt="Gobierno de la Provincia de Córdoba"></div>
+        <div class="aliado-item" style="background:#fff"><img src="./img/founder_cordoba.png" alt="Founder Institute Córdoba"></div>
+        <div class="aliado-item" style="background:#fff"><img src="./img/converge.png" alt="Converge · INIA · ANII · BID Lab"></div>
+      </div>
+      <div class="aliados-grid" style="margin-top:1.5rem">
+        <div class="aliado-item" style="background:#fff"><img src="./img/la_sirena.png" alt="La Sirena"></div>
+        <div class="aliado-item" style="background:#fff"><img src="./img/agroacopio.jpg" alt="Agro Acopio"></div>
+        <div class="aliado-item" style="background:#fff"><img src="./img/agro_supertino.jpg" alt="Agro Supertino"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="sec-inner">
+    <h2 class="sec-title reveal">Dejanos tu <em>consulta</em></h2>
+    <div class="contacto-grid">
+      <div class="reveal visible">
+        <form id="contactForm">
+          <input type="hidden" name="access_key" value="ccc57100-e335-4996-aa84-f6678ca7a83d">
+          <input type="hidden" name="subject" value="Nueva consulta desde kairooagtech.com">
+          <input type="hidden" name="from_name" value="Web Kairoo AgTech">
+          <div class="form-group"><label>Nombre completo *</label><input type="text" name="nombre" required="" placeholder="Juan García"></div>
+          <div class="form-group"><label>Teléfono / WhatsApp *</label><input type="tel" name="telefono" required="" placeholder="+54 9 ..."></div>
+          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="juan@ejemplo.com"></div>
+          <div class="form-group"><label>Mensaje</label><textarea name="mensaje" rows="4" placeholder="Contanos qué necesitás..."></textarea></div>
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center">▸ Enviar consulta</button>
+          <div class="form-status" id="formStatus"></div>
+        </form>
+      </div>
+      <div class="contacto-info reveal">
+        <a href="https://wa.me/5493536563684?text=Hola%20buen%20dia%2C%20quisiera%20pedir%20presupuesto.%20Gracias" target="_blank" class="contacto-item"><div class="contacto-item-icon">💬</div><div><div class="contacto-item-label">WhatsApp</div><div class="contacto-item-val">+54 9 353 656 3684</div></div></a>
+        <a href="/cdn-cgi/l/email-protection#0961666568496268607b6666686e7d6c6a61276a6664" class="contacto-item"><div class="contacto-item-icon">✉️</div><div><div class="contacto-item-label">Email</div><div class="contacto-item-val"><span class="__cf_email__" data-cfemail="7d1512111c3d161c140f12121c1a09181e15531e1210">[email&#160;protected]</span></div></div></a>
+        <a href="https://calendar.app.google/B29JHgXHM2VinY2ZA" target="_blank" class="contacto-item"><div class="contacto-item-icon">📅</div><div><div class="contacto-item-label">Reunión online</div><div class="contacto-item-val">Agendá una videollamada</div></div></a>
+        <div style="padding:.1rem 0">
+          <div class="contacto-item-label" style="margin-bottom:.6rem">Redes sociales</div>
+          <div class="social-row">
+            <a href="https://www.instagram.com/kairoo.agtech/" target="_blank" class="social-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>Instagram</a>
+            <a href="https://www.linkedin.com/company/108782939/" target="_blank" class="social-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>LinkedIn</a>
+            <a href="https://wa.me/5493536563684" target="_blank" class="social-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>WhatsApp</a>
+          </div>
+        </div>
+        <div class="contacto-note">📍 <strong>Córdoba y zona núcleo.</strong><br><span style="color:var(--gray)">Respondemos en menos de 24 h.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bottom-row">
+  <section id="prensa">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.05rem;letter-spacing:3px;text-transform:uppercase;color:var(--lime);margin-bottom:.6rem">Nos hablan</div>
+    <h2 class="sec-title" style="margin-bottom:1.6rem">En la <em>prensa</em></h2>
+    <div class="prensa-grid">
+
+      <!-- 0. Radio Vive — 29 oct 2026 -->
+      <div class="prensa-card reveal">
+        <div class="prensa-body">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem">
+            <span class="prensa-medio">Radio Vive</span>
+            <span class="prensa-tag prensa-tag--video">▶ Video · 29 oct 2026</span>
+          </div>
+          <a href="https://radiovive.com.ar/destacadas/2026/10/29/la-empresa-de-drones-agricolas-kairoo-recibio-la-visita-del-ministro-de-produccion-ciencia-e-innovacion-tecnologica/" target="_blank" class="prensa-titulo">La empresa de drones agrícolas Kairoo recibió la visita del Ministro de Producción, Ciencia e Innovación Tecnológica</a>
+          <p class="prensa-desc">El ministro provincial recorrió la base de Kairoo en Pozo del Molle para conocer de cerca la operación con drones de precisión y el desarrollo de la agtech en el interior cordobés.</p>
+          <div class="prensa-footer">
+            <span class="prensa-fecha">Radio Vive 98.3 · Las Varillas</span>
+            <a href="https://radiovive.com.ar/destacadas/2026/10/29/la-empresa-de-drones-agricolas-kairoo-recibio-la-visita-del-ministro-de-produccion-ciencia-e-innovacion-tecnologica/" target="_blank" class="prensa-link">Ver nota ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1. Innovar y Emprender — 2 abr 2026 -->
+      <div class="prensa-card reveal">
+        <div class="prensa-body">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem">
+            <span class="prensa-medio">Innovar y Emprender CBA</span>
+            <span class="prensa-tag">Startups · 2 abr 2026</span>
+          </div>
+          <a href="https://innovaryemprendercba.com.ar/mentorias-del-triple-f-acompanamiento-estrategico-para-startups-cordobesas/" target="_blank" class="prensa-titulo">Mentorías del Triple F: acompañamiento estratégico para startups cordobesas</a>
+          <p class="prensa-desc">Kairoo como parte del programa de coinversión Triple F del Gobierno de Córdoba, repensando estrategias y avanzando con mayor claridad.</p>
+          <div class="prensa-footer">
+            <span class="prensa-fecha">Agencia Córdoba Innovar y Emprender</span>
+            <a href="https://innovaryemprendercba.com.ar/mentorias-del-triple-f-acompanamiento-estrategico-para-startups-cordobesas/" target="_blank" class="prensa-link">Leer nota ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Radio Villa María — 13 mar 2026 -->
+      <div class="prensa-card reveal">
+        <div class="prensa-body">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem">
+            <span class="prensa-medio">Radio Villa María</span>
+            <span class="prensa-tag">Agro · 13 mar 2026</span>
+          </div>
+          <a href="https://radiovillamaria.com.ar/nota/186316/martin-comba-cada-hectarea-es-un-aprendizaje-y-una-trazabilidad-de-datos" target="_blank" class="prensa-titulo">Martín Comba: "Cada hectárea es un aprendizaje y una trazabilidad de datos"</a>
+          <p class="prensa-desc">Entrevista al director agronómico de Kairoo sobre precisión, trazabilidad y el futuro de la aplicación con drones en el campo argentino.</p>
+          <div class="prensa-footer">
+            <span class="prensa-fecha">LV28 · AM 930</span>
+            <a href="https://radiovillamaria.com.ar/nota/186316/martin-comba-cada-hectarea-es-un-aprendizaje-y-una-trazabilidad-de-datos" target="_blank" class="prensa-link">Leer nota ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Ruta 9 Noticias — 20 feb 2026 -->
+      <div class="prensa-card reveal">
+        <div class="prensa-body">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem">
+            <span class="prensa-medio">Ruta 9 Noticias</span>
+            <span class="prensa-tag">Agro · 20 feb 2026</span>
+          </div>
+          <a href="https://ruta9noticias.com/2026/02/20/de-pozo-del-molle-al-campo-argentino-la-agtech-que-usa-drones-para-revolucionar-la-agricultura/" target="_blank" class="prensa-titulo">De Pozo del Molle al campo argentino: la agtech que usa drones para revolucionar la agricultura</a>
+          <p class="prensa-desc">El camino de Kairoo desde el interior cordobés hasta convertirse en referente de la agricultura de precisión con drones.</p>
+          <div class="prensa-footer">
+            <span class="prensa-fecha">Ruta 9 Noticias</span>
+            <a href="https://ruta9noticias.com/2026/02/20/de-pozo-del-molle-al-campo-argentino-la-agtech-que-usa-drones-para-revolucionar-la-agricultura/" target="_blank" class="prensa-link">Leer nota ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. La Voz del Interior — 16 feb 2026 -->
+      <div class="prensa-card prensa-card--featured reveal">
+        <div class="prensa-body">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem">
+            <img src="./img/lavoz.png" alt="La Voz" style="height:20px;width:auto;object-fit:contain">
+            <span class="prensa-tag">Negocios · 16 feb 2026</span>
+          </div>
+          <a href="https://www.lavoz.com.ar/negocios/la-agtech-cordobesa-que-usa-drones-para-hacer-mas-eficiente-la-agricultura/" target="_blank" class="prensa-titulo">La agtech cordobesa que usa drones para hacer más eficiente la agricultura</a>
+          <p class="prensa-desc">Nacida en Pozo del Molle, apuesta a optimizar los costos de las aplicaciones agrícolas y garantizar trazabilidad.</p>
+          <div class="prensa-footer">
+            <span class="prensa-fecha">Pablo Moragues · La Voz del Interior</span>
+            <a href="https://www.lavoz.com.ar/negocios/la-agtech-cordobesa-que-usa-drones-para-hacer-mas-eficiente-la-agricultura/" target="_blank" class="prensa-link">Leer nota ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Next from Argentina — 16 ene 2026 -->
+      <div class="prensa-card reveal">
+        <div class="prensa-body">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem">
+            <span class="prensa-medio">Next from Argentina · Cancillería</span>
+            <span class="prensa-tag">Reconocimiento · 16 ene 2026</span>
+          </div>
+          <a href="https://cancilleria.gob.ar/es/nuevas-tecnologias/next-from-argentina/kairoo" target="_blank" class="prensa-titulo">Kairoo ingresa al Portfolio oficial Next from Argentina</a>
+          <p class="prensa-desc">Desde el interior productivo al reconocimiento nacional: Kairoo forma parte del portfolio de empresas tecnológicas argentinas de Cancillería.</p>
+          <div class="prensa-footer">
+            <span class="prensa-fecha">Ministerio de Relaciones Exteriores</span>
+            <a href="https://www.instagram.com/p/DTlEShqjseV/" target="_blank" class="prensa-link">Ver publicación ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. FM Fénix 100.3 — 9 oct 2025 -->
+      <div class="prensa-card reveal">
+        <div class="prensa-body">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem">
+            <span class="prensa-medio">FM Fénix 100.3</span>
+            <span class="prensa-tag prensa-tag--video">▶ Radio · 9 oct 2025</span>
+          </div>
+          <a href="https://www.youtube.com/live/GHCbVJxnGes" target="_blank" class="prensa-titulo">Café de Ideas — FM Fénix 100.3</a>
+          <p class="prensa-desc">Kairoo en la radio alternativa de la zona norte del Gran Buenos Aires, compartiendo la visión de la agrointeligencia con drones.</p>
+          <div class="prensa-footer">
+            <span class="prensa-fecha">FM Fénix 100.3 · Martínez</span>
+            <a href="https://www.youtube.com/live/GHCbVJxnGes" target="_blank" class="prensa-link">Escuchar ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Agrofy News — 7 oct 2025 -->
+      <div class="prensa-card reveal">
+        <div class="prensa-body">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.4rem">
+            <span class="prensa-medio">Agrofy News</span>
+            <span class="prensa-tag prensa-tag--video">▶ Video · 7 oct 2025</span>
+          </div>
+          <a href="https://www.youtube.com/live/4iq9fgCx3PM" target="_blank" class="prensa-titulo">La Posta en vivo: ¿Y la soja? Espacio y agro — BPAs para la agricultura</a>
+          <p class="prensa-desc">Kairoo presente en el programa de Agrofy News, hablando sobre buenas prácticas agrícolas y el rol de los drones en la agricultura moderna.</p>
+          <div class="prensa-footer">
+            <span class="prensa-fecha">Agrofy News · YouTube</span>
+            <a href="https://www.youtube.com/live/4iq9fgCx3PM" target="_blank" class="prensa-link">Ver video ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <section id="galeria">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.05rem;letter-spacing:3px;text-transform:uppercase;color:var(--lime);margin-bottom:.6rem">En el campo</div>
+    <h2 class="sec-title" style="margin-bottom:1.6rem">Kairoo <em>en acción</em></h2>
+    <div class="slideshow" id="slideshow">
+      <div class="slide active"><img src="./img/campo1.jpg" loading="lazy"></div>
+      <div class="slide"><img src="./img/campo2.jpg" loading="lazy"></div>
+      <div class="slide"><img src="./img/campo3.jpg" loading="lazy"></div>
+      <div class="slide"><img src="./img/campo4.jpg" loading="lazy"></div>
+      <div class="slide"><img src="./img/campo5.jpg" loading="lazy"></div>
+      <div class="slide"><img src="./img/campo6.jpg" loading="lazy"></div>
+      <div class="slide"><img src="./img/campo7.jpg" loading="lazy"></div>
+      <div class="slide"><img src="./img/campo8.jpg" loading="lazy"></div>
+      <div class="slide"><img src="./img/campo9.jpg" loading="lazy"></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div>
+    <img src="./img/logo.png" alt="Kairoo" class="footer-logo-img">
+    <div class="footer-tagline">Agrointeligencia con drones</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:.7rem;align-items:flex-end">
+    <div style="display:flex;gap:.9rem">
+      <a href="https://www.instagram.com/kairoo.agtech/" target="_blank" class="footer-social"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+      <a href="https://www.linkedin.com/company/108782939/" target="_blank" class="footer-social"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a>
+      <a href="https://wa.me/5493536563684" target="_blank" class="footer-social"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></a>
+    </div>
+    <div class="footer-copy">2025 Kairoo AgTech. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5493536563684?text=Hola%20buen%20dia%2C%20quisiera%20pedir%20presupuesto%20y%20mas%20informaci%C3%B3n.%20Gracias" target="_blank" class="wa-fab"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg></a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+var nb=document.getElementById('navbar');
+window.addEventListener('scroll',function(){nb.style.background=window.scrollY>50?'rgba(8,40,45,0.99)':'rgba(8,40,45,0.95)';});
+document.getElementById('ham').addEventListener('click',function(){document.getElementById('mobileMenu').classList.toggle('open');});
+window.closeMobile=function(){document.getElementById('mobileMenu').classList.remove('open');};
+var hv=document.getElementById('heroVisual');
+window.addEventListener('scroll',function(){if(!hv)return;var p=Math.min(window.scrollY/document.getElementById('hero').offsetHeight,1);hv.style.transform='translateY('+(p*60)+'px) scale('+(1+p*0.04)+')';hv.style.opacity=p>0.75?1-(p-0.75)*4:1;});
+document.querySelectorAll('.reveal').forEach(function(el){new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.06}).observe(el);});
+function animCount(el){var s=el.dataset.suffix||'',d=1800,st=performance.now();function tick(n){var t=+el.dataset.target,p=Math.min((n-st)/d,1),v=1-Math.pow(1-p,3);el.textContent=Math.round(v*t).toLocaleString('es-AR')+s;if(p<1)requestAnimationFrame(tick);}requestAnimationFrame(tick);}
+document.querySelectorAll('[data-target]').forEach(function(el){new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting)animCount(e.target);});},{threshold:0.5}).observe(el);});
+document.getElementById('contactForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var st=document.getElementById('formStatus'),btn=this.querySelector('button[type=submit]'),data=new FormData(this);
+  var n=data.get('nombre')||'',t=data.get('telefono')||'',m=data.get('mensaje')||'';
+  btn.textContent='Enviando...';btn.disabled=true;
+  try{var r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data});if(!(await r.json()).success)throw new Error();}
+  catch(err){st.className='form-status error';st.textContent='No se pudo enviar. Escribinos por WhatsApp.';btn.textContent='Enviar consulta';btn.disabled=false;return;}
+  st.className='form-status success';st.textContent='Consulta enviada. Te abrimos WhatsApp...';
+  this.reset();btn.textContent='Enviar consulta';btn.disabled=false;
+  var msg='Hola%20buen%20dia%2C%20escribo%20desde%20la%20web.%0A*Nombre%3A*%20'+encodeURIComponent(n)+'%0A*Tel%3A*%20'+encodeURIComponent(t)+'%0A*Mensaje%3A*%20'+encodeURIComponent(m);
+  setTimeout(function(){window.open('https://wa.me/5493536563684?text='+msg,'_blank');},1300);
+});
+var slides=document.querySelectorAll('.slide'),cur=0;
+function nextSlide(){slides[cur].classList.remove('active');cur=(cur+1)%slides.length;slides[cur].classList.add('active');}
+if(slides.length>1)setInterval(nextSlide,3500);
+})();
+</script>
+<script>
+/* Estadísticas en vivo desde la app Kairoo (Supabase). Si falla, quedan los valores del HTML. */
+(function(){
+  var AGUA_L_HA = 75 - 11.5;      // L/ha ahorrados: terrestre vs dron (solo pulverización)
+  var CO2_TN_HA = 26 / 5250;      // Tn CO2 evitadas por ha trabajada (neto de generador y traslados)
+  fetch('https://tyepeicufwoopooopywp.supabase.co/rest/v1/rpc/estadisticas_publicas_web',{
+    method:'POST',
+    headers:{'apikey':'sb_publishable_dzOdWu2IxWHtNzh_kCdwDA_a222VVlM','Content-Type':'application/json'},
+    body:'{}'
+  }).then(function(r){return r.ok?r.json():null;}).then(function(d){
+    if(!d||!d.ha_total)return;
+    var v={pulv:d.ha_pulverizacion, sol:d.ha_solidos, total:d.ha_total,
+           agua:Math.round(d.ha_pulverizacion*AGUA_L_HA), co2:Math.round(d.ha_total*CO2_TN_HA)};
+    document.querySelectorAll('[data-stat]').forEach(function(el){
+      var n=v[el.dataset.stat]; if(n==null)return;
+      if(el.hasAttribute('data-target')){
+        el.dataset.target=n;
+        if(el.textContent.trim()!=='0') el.textContent=n.toLocaleString('es-AR')+(el.dataset.suffix||'');
+      } else el.textContent=n.toLocaleString('es-AR');
+    });
+  }).catch(function(){});
+})();
+</script>
+</body></html>
