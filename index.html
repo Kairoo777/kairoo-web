@@ -111,6 +111,8 @@ section{padding:4.5rem 5%}
 .aliados-grid{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2.5rem;margin-top:2rem}
 .aliado-item{display:flex;align-items:center;justify-content:center;padding:1rem 1.5rem;background:rgba(247,246,241,.04);border:1px solid rgba(247,246,241,.08);border-radius:10px;transition:all .3s;min-width:160px}
 .aliado-item:hover{background:rgba(247,246,241,.08);border-color:rgba(230,255,42,.2);transform:translateY(-2px)}
+.aliados-sub{display:flex;align-items:center;gap:1rem;max-width:720px;margin:2.6rem auto 0;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:3px;text-transform:uppercase;color:var(--lime)}
+.aliados-sub::before,.aliados-sub::after{content:'';flex:1;height:1px;background:rgba(230,255,42,.18)}
 .aliado-item img{height:60px;width:auto;max-width:180px;object-fit:contain;filter:grayscale(30%)brightness(1.1);transition:filter .3s}
 .aliado-item:hover img{filter:grayscale(0%) brightness(1.15)}
 #contacto{background:var(--dark2);border-top:1px solid rgba(230,255,42,.1)}
@@ -361,14 +363,17 @@ footer{background:var(--dark);border-top:1px solid rgba(247,246,241,.06);padding
     <div class="reveal visible" style="text-align:center">
       <h2 class="sec-title" style="margin-bottom:1rem">Nos <em>acompañan</em></h2>
       <p style="color:var(--gray);font-size:1.02rem;margin-bottom:1rem">Empresas e instituciones que confían y trabajan junto a Kairoo.</p>
-      <div class="aliados-grid" style="gap:1.5rem">
+      <div class="aliados-sub">Institucionales</div>
+      <div class="aliados-grid" style="gap:1.5rem;margin-top:1rem">
         <div class="aliado-item" style="background:#fff"><img src="./img/innovar_emprender.jpg" alt="Agencia Córdoba Innovar y Emprender"></div>
         <div class="aliado-item" style="background:#fff"><img src="./img/cordoba40.png" alt="Córdoba 4.0 · Secretaría de Ciencia y Tecnología"></div>
         <div class="aliado-item" style="background:#fff"><img src="./img/gobierno_cordoba.png" alt="Gobierno de la Provincia de Córdoba"></div>
         <div class="aliado-item" style="background:#fff"><img src="./img/founder_cordoba.png" alt="Founder Institute Córdoba"></div>
         <div class="aliado-item" style="background:#fff"><img src="./img/converge.png" alt="Converge · INIA · ANII · BID Lab"></div>
+        <div class="aliado-item" style="background:#fff"><img src="./img/concurso_emprendimiento_argentino.png" alt="Concurso Emprendimiento Argentino"></div>
       </div>
-      <div class="aliados-grid" style="margin-top:1.5rem">
+      <div class="aliados-sub">Nuestros clientes</div>
+      <div class="aliados-grid" style="gap:1.5rem;margin-top:1rem">
         <div class="aliado-item" style="background:#fff"><img src="./img/la_sirena.png" alt="La Sirena"></div>
         <div class="aliado-item" style="background:#fff"><img src="./img/agroacopio.jpg" alt="Agro Acopio"></div>
         <div class="aliado-item" style="background:#fff"><img src="./img/agro_supertino.jpg" alt="Agro Supertino"></div>
