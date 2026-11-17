@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AKKADEMY — Curso de Piloto de Dron Aplicador · Edición 2 | Kairoo</title>
-<meta name="description" content="Curso de Piloto de Dron Aplicador, 2ª edición. Dos días: teoría y negocio, y un día a campo donde volás vos. 30 y 31 de octubre, Villa María, Córdoba.">
+<title>AKKADEMY — Curso de Piloto de Dron Aplicador · Próxima edición | Kairoo</title>
+<meta name="description" content="Curso de Piloto de Dron Aplicador de AKKADEMY. Preinscripción abierta para la próxima edición: dos días, teoría y negocio, y un día a campo donde volás vos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Schibsted+Grotesk:wght@400;500;600;700&family=Onest:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -148,7 +148,49 @@ em{font-style:normal;color:var(--cian-deep)}
 
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(8,40,45,.96);backdrop-filter:blur(8px);border-top:1px solid rgba(247,246,241,.12)}
 
+
+/* nota cronograma */
+.cron-note{text-align:center;font-family:var(--font-label);font-size:13px;color:var(--bone);opacity:.6;margin-top:22px}
+
+/* EDICIONES ANTERIORES */
+.past{background:var(--bone)}
+.past h2{text-align:center;font-size:clamp(24px,3.2vw,38px);margin:0 auto 10px}
+.past .lead{text-align:center;color:var(--gris-ink);font-size:15px;max-width:56ch;margin:0 auto 34px}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pcard{background:var(--white);border:1px solid var(--bone-3);border-radius:18px;overflow:hidden;transition:.28s var(--ease)}
+.pcard:hover{border-color:var(--cian);box-shadow:0 18px 44px rgba(8,40,45,.10)}
+.pmeta{padding:20px 24px 24px}
+.pmeta .pk{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cian-deep);margin-bottom:6px}
+.pmeta h3{font-size:19px;margin:0 0 6px}
+.pmeta p{font-size:14px;color:var(--gris-ink)}
+.vid{position:relative;aspect-ratio:16/9;background:var(--navy);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.vid img,.vid video,.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+.vid .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(8,40,45,.28);border:none;cursor:pointer;transition:.2s var(--ease)}
+.vid .play:hover{background:rgba(8,40,45,.12)}
+.vid .play span{width:68px;height:68px;border-radius:50%;background:var(--cian);display:flex;align-items:center;justify-content:center}
+.vid .play svg{width:26px;height:26px;fill:var(--navy);margin-left:3px}
+.vid--empty{color:var(--bone);font-family:var(--font-label);font-size:14px;opacity:.85}
+
+/* PREINSCRIPCIÓN */
+.pre-form{display:flex;flex-direction:column;gap:12px}
+.pre-form label{font-family:var(--font-label);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gris-ink);display:block;margin-bottom:5px}
+.pre-form input,.pre-form select{width:100%;font-family:var(--font-body);font-size:15px;color:var(--navy);background:var(--bone);border:1px solid var(--bone-3);border-radius:10px;padding:12px 14px;outline:none;transition:.18s var(--ease)}
+.pre-form input:focus,.pre-form select:focus{border-color:var(--cian-dark);background:var(--white)}
+.pre-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pre-form .btn{width:100%;margin-top:4px}
+.pre-form .btn[disabled]{opacity:.6;cursor:wait}
+.pre-status{display:none;font-family:var(--font-label);font-size:14px;border-radius:10px;padding:12px 14px;margin-top:2px}
+.pre-status.ok{display:block;background:var(--cian-soft);color:var(--navy)}
+.pre-status.err{display:block;background:#fde8e8;color:#8a1f1f}
+.pre-fine{font-size:12px;color:var(--gris-ink)}
+.pre-hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+.beca ul{list-style:none;margin:0 0 22px}
+.beca li{display:flex;gap:10px;font-size:14.5px;opacity:.9;padding:6px 0;align-items:flex-start}
+.beca li::before{content:"";flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:var(--cian);margin-top:8px}
+
 @media(max-width:860px){
+  .pgrid{grid-template-columns:1fr}
+  .pre-row{grid-template-columns:1fr}
   .vgrid{grid-template-columns:1fr}
   .days{grid-template-columns:1fr}
   .split{grid-template-columns:1fr}
@@ -170,25 +212,25 @@ em{font-style:normal;color:var(--cian-deep)}
       <a class="top-back" href="./index.html#hero">← kairoo</a>
       <img class="top-logo" src="./img/akkademy_horizontal.svg" alt="AKKADEMY">
     </div>
-    <a class="top-cta" href="https://forms.gle/cMowyALcNaVkDwAD7" target="_blank" rel="noopener">Inscribite</a>
+    <a class="top-cta" href="#preinscripcion">Preinscribite</a>
   </div>
 </header>
 
 <section class="hero" id="curso">
   <div class="wrap">
     <img class="hero-logo" src="./img/akkademy_horizontal.svg" alt="AKKADEMY">
-    <p class="edition">2ª Edición · Villa María, Córdoba</p>
+    <p class="edition">Próxima edición · Fecha y sede a confirmar</p>
     <h1>Formate como <em>piloto de dron aplicador</em></h1>
     <p class="hero-lede">Aprendé en 2 días lo que a nosotros nos costó 6.000 hectáreas trabajadas. Un día de teoría y negocio, y un día a campo donde <em>volás vos</em>.</p>
     <div class="facts">
-      <div class="fact"><span class="fk">Dónde</span><b>Villa María, Córdoba</b></div>
+      <div class="fact"><span class="fk">Dónde</span><b>A confirmar</b></div>
       <div class="fact"><span class="fk">Certifica</span><b>AKKADEMY by Kairoo</b></div>
-      <div class="fact"><span class="fk">Cuándo</span><b>30 y 31 Octubre</b></div>
-      <div class="fact"><span class="fk">Cupo</span><b>20 lugares</b></div>
+      <div class="fact"><span class="fk">Cuándo</span><b>A confirmar</b></div>
+      <div class="fact"><span class="fk">Preinscripción</span><b>Abierta</b></div>
     </div>
     <div class="cta-row">
-      <a class="btn btn--primary" href="https://forms.gle/cMowyALcNaVkDwAD7" target="_blank" rel="noopener">Inscribite <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn--ghost" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(Edici%C3%B3n%202)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> WhatsApp</a>
+      <a class="btn btn--primary" href="#preinscripcion">Preinscribite <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--ghost" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(pr%C3%B3xima%20edici%C3%B3n)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> WhatsApp</a>
     </div>
   </div>
 </section>
@@ -218,7 +260,7 @@ em{font-style:normal;color:var(--cian-deep)}
     <h2>CRONOGRAMA</h2>
     <div class="days">
       <article class="day reveal">
-        <p class="d">DÍA 1 · 30/10 · de 8:00 a 18:15 hs</p>
+        <p class="d">EDICIÓN 2 · DÍA 1 · 30/10 · de 8:00 a 18:15 hs</p>
         <h3>Teórico y de negocio</h3>
         <p class="sub">UGR, sede Villa María</p>
         <ul>
@@ -235,7 +277,7 @@ em{font-style:normal;color:var(--cian-deep)}
         </ul>
       </article>
       <article class="day reveal">
-        <p class="d">DÍA 2 · 31/10 · de 8:00 a 13:30 hs</p>
+        <p class="d">EDICIÓN 2 · DÍA 2 · 31/10 · de 8:00 a 13:30 hs</p>
         <h3>Práctico a campo</h3>
         <p class="sub">Campo cercano (a confirmar), Villa María</p>
         <ul>
@@ -247,6 +289,7 @@ em{font-style:normal;color:var(--cian-deep)}
         </ul>
       </article>
     </div>
+    <p class="cron-note">Este es el programa de la Edición 2 (Villa María). El de la próxima edición puede tener ajustes.</p>
   </div>
 </section>
 
@@ -267,30 +310,67 @@ em{font-style:normal;color:var(--cian-deep)}
   </div>
 </section>
 
-<section class="band enroll" style="background:var(--bone-2)">
+<section class="band past" id="ediciones">
   <div class="wrap">
-    <h2>Asegurá tu <em>lugar</em></h2>
+    <h2>Ediciones <em>anteriores</em></h2>
+    <p class="lead">Así se vivió AKKADEMY: pilotos, campo y práctica real.</p>
+    <div class="pgrid">
+      <article class="pcard reveal">
+        <div class="vid vid--empty" data-yt="" data-src="" data-poster="">Video próximamente</div>
+        <div class="pmeta"><p class="pk">Edición 1</p><h3>Pergamino</h3><p>La primera edición del curso de Piloto de Dron Aplicador.</p></div>
+      </article>
+      <article class="pcard reveal">
+        <div class="vid vid--empty" data-yt="" data-src="" data-poster="">Video próximamente</div>
+        <div class="pmeta"><p class="pk">Edición 2 · 30 y 31 de octubre de 2026</p><h3>Villa María, Córdoba</h3><p>Un día de teoría y negocio, y un día a campo donde volaron los alumnos.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band enroll" id="preinscripcion" style="background:var(--bone-2)">
+  <div class="wrap">
+    <h2>Sumate a la <em>próxima edición</em></h2>
     <div class="split">
       <div class="panel beca reveal">
-        <span class="tag">Postulaciones hasta el 16/10</span>
-        <h3>Beca del 50%</h3>
-        <p>Hay una beca del 50% disponible para esta edición. Postulate completando el formulario — cupos muy limitados.</p>
-        <a class="btn btn--primary" href="https://forms.gle/wNKGBtSJ7rcBQWqG6" target="_blank" rel="noopener">Postulate a la beca <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <span class="tag">Preinscripción abierta</span>
+        <h3>Todavía no hay fecha ni sede</h3>
+        <p>Estamos definiendo la próxima edición. Dejanos tus datos y sos de los primeros en enterarte cuando la confirmemos.</p>
+        <ul>
+          <li>Sin compromiso: preinscribirte no te obliga a nada.</li>
+          <li>Te avisamos fecha, sede y valores antes de abrir la inscripción general.</li>
+        </ul>
+        <a class="btn btn--primary" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(pr%C3%B3xima%20edici%C3%B3n)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> Prefiero escribir por WhatsApp</a>
       </div>
       <div class="panel inv reveal">
-        <span class="tag">Beneficios y descuentos</span>
-        <h3>Promos vigentes</h3>
-        <div class="ben-grid">
-          <div class="ben ben--hi"><b>8% OFF</b><span>Lanzamiento · hasta el 14/10</span></div>
-          <div class="ben"><b>15% OFF</b><span>En dupla, por persona · no acumulable</span></div>
-          <div class="ben"><b>3 cuotas</b><span>Sin interés</span></div>
-          <div class="ben"><b>15% OFF</b><span>Alumnos Agrotecnología UGR</span></div>
-        </div>
-        <p class="note">Los valores del curso se comparten por WhatsApp. Escribinos y te pasamos todo.</p>
-        <div class="cta-row">
-          <a class="btn btn--onlight" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(Edici%C3%B3n%202)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> Consultar por WhatsApp</a>
-          <a class="btn btn--ghost" href="https://forms.gle/cMowyALcNaVkDwAD7" target="_blank" rel="noopener">Inscribite</a>
-        </div>
+        <span class="tag">Formulario de preinscripción</span>
+        <h3>Anotate acá</h3>
+        <form class="pre-form" id="preForm" novalidate>
+          <input type="hidden" name="access_key" value="ccc57100-e335-4996-aa84-f6678ca7a83d">
+          <input type="hidden" name="subject" value="Preinscripción AKKADEMY (próxima edición)">
+          <input type="hidden" name="from_name" value="Web AKKADEMY">
+          <input type="checkbox" name="botcheck" class="pre-hp" tabindex="-1" autocomplete="off">
+          <div><label for="pf-nombre">Nombre y apellido *</label><input id="pf-nombre" type="text" name="nombre" required autocomplete="name"></div>
+          <div class="pre-row">
+            <div><label for="pf-tel">WhatsApp *</label><input id="pf-tel" type="tel" name="telefono" required autocomplete="tel" placeholder="+54 9 ..."></div>
+            <div><label for="pf-mail">Email</label><input id="pf-mail" type="email" name="email" autocomplete="email"></div>
+          </div>
+          <div class="pre-row">
+            <div><label for="pf-loc">Localidad *</label><input id="pf-loc" type="text" name="localidad" required></div>
+            <div><label for="pf-perfil">Soy</label>
+              <select id="pf-perfil" name="perfil">
+                <option value="">Elegí una opción</option>
+                <option>Productor</option>
+                <option>Contratista / prestador</option>
+                <option>Estudiante</option>
+                <option>Ingeniero agrónomo / asesor</option>
+                <option>Otro</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn--onlight" type="submit">Preinscribirme <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <div class="pre-status" id="preStatus" role="status" aria-live="polite"></div>
+          <p class="pre-fine">Usamos tus datos solo para avisarte de AKKADEMY.</p>
+        </form>
       </div>
     </div>
   </div>
@@ -298,12 +378,12 @@ em{font-style:normal;color:var(--cian-deep)}
 
 <section class="final">
   <div class="wrap">
-    <p class="k">Cupo 20 · 2ª edición · Villa María</p>
-    <h2>Reservá tu lugar en la Edición 2</h2>
-    <p>30 y 31 de octubre en Villa María, Córdoba. Escribinos y coordinamos tu inscripción.</p>
+    <p class="k">Próxima edición · Fecha y sede a confirmar</p>
+    <h2>Preinscribite a la próxima edición</h2>
+    <p>Todavía no hay fecha ni sede. Dejanos tus datos y te avisamos primero.</p>
     <div class="cta-row">
-      <a class="btn btn--primary" href="https://forms.gle/cMowyALcNaVkDwAD7" target="_blank" rel="noopener">Inscribite <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn--ghost" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(Edici%C3%B3n%202)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> WhatsApp</a>
+      <a class="btn btn--primary" href="#preinscripcion">Preinscribite <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn--ghost" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(pr%C3%B3xima%20edici%C3%B3n)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> WhatsApp</a>
     </div>
   </div>
 </section>
@@ -315,12 +395,51 @@ em{font-style:normal;color:var(--cian-deep)}
   </div>
 </section>
 
-<div class="sticky"><a class="btn btn--primary" href="https://forms.gle/cMowyALcNaVkDwAD7" target="_blank" rel="noopener" style="width:100%">Inscribite al curso</a></div>
+<div class="sticky"><a class="btn btn--primary" href="#preinscripcion" style="width:100%">Preinscribite al curso</a></div>
 
 <script>
 document.querySelectorAll('.reveal').forEach(function(el){
   new IntersectionObserver(function(en,ob){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');ob.unobserve(e.target);}});},{threshold:.12}).observe(el);
 });
+</script>
+<script>
+(function(){
+  // Videos: YouTube (click-to-load) o mp4 propio
+  document.querySelectorAll('.vid').forEach(function(v){
+    var yt=(v.dataset.yt||'').trim(), src=(v.dataset.src||'').trim(), poster=(v.dataset.poster||'').trim();
+    if(!yt&&!src)return;
+    v.classList.remove('vid--empty'); v.textContent='';
+    var thumb=poster||(yt?'https://i.ytimg.com/vi/'+yt+'/hqdefault.jpg':'');
+    if(thumb){var im=document.createElement('img');im.src=thumb;im.alt='Video de la edición';im.loading='lazy';v.appendChild(im);}
+    var b=document.createElement('button');b.type='button';b.className='play';b.setAttribute('aria-label','Reproducir video');
+    b.innerHTML='<span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
+    b.addEventListener('click',function(){
+      v.textContent='';
+      if(yt){var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+yt+'?autoplay=1&rel=0';f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.title='Video de la edición';v.appendChild(f);}
+      else{var m=document.createElement('video');m.src=src;m.controls=true;m.autoplay=true;m.playsInline=true;if(poster)m.poster=poster;v.appendChild(m);}
+    });
+    v.appendChild(b);
+  });
+
+  // Preinscripción
+  var form=document.getElementById('preForm'); if(!form)return;
+  var st=document.getElementById('preStatus'), btn=form.querySelector('button[type=submit]');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=form.nombre.value.trim(), t=form.telefono.value.trim(), l=form.localidad.value.trim();
+    if(!n||!t||!l){st.className='pre-status err';st.textContent='Completá nombre, WhatsApp y localidad.';return;}
+    var label=btn.firstChild.textContent; btn.disabled=true; btn.firstChild.textContent='Enviando… ';
+    fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(form)})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(!d.success)throw new Error();
+        st.className='pre-status ok';st.textContent='¡Listo! Quedaste preinscripto/a. Te escribimos apenas confirmemos fecha y sede.';
+        form.reset();
+      })
+      .catch(function(){st.className='pre-status err';st.textContent='No se pudo enviar. Escribinos por WhatsApp y te anotamos.';})
+      .finally(function(){btn.disabled=false;btn.firstChild.textContent=label;});
+  });
+})();
 </script>
 </body>
 </html>
