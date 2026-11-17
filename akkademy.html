@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AKKADEMY — Curso de Piloto de Dron Aplicador · Próxima edición | Kairoo</title>
-<meta name="description" content="Curso de Piloto de Dron Aplicador de AKKADEMY. Preinscripción abierta para la próxima edición: dos días, teoría y negocio, y un día a campo donde volás vos.">
+<title>AKKADEMY — Curso de Piloto de Dron Aplicador · Edición 3 | Kairoo</title>
+<meta name="description" content="Curso de Piloto de Dron Aplicador de AKKADEMY. Edición 3 próximamente, con preinscripción abierta: dos días, teoría y negocio, y un día a campo donde volás vos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Schibsted+Grotesk:wght@400;500;600;700&family=Onest:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -156,19 +156,22 @@ em{font-style:normal;color:var(--cian-deep)}
 .past{background:var(--bone)}
 .past h2{text-align:center;font-size:clamp(24px,3.2vw,38px);margin:0 auto 10px}
 .past .lead{text-align:center;color:var(--gris-ink);font-size:15px;max-width:56ch;margin:0 auto 34px}
-.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,340px));gap:26px;justify-content:center}
 .pcard{background:var(--white);border:1px solid var(--bone-3);border-radius:18px;overflow:hidden;transition:.28s var(--ease)}
 .pcard:hover{border-color:var(--cian);box-shadow:0 18px 44px rgba(8,40,45,.10)}
 .pmeta{padding:20px 24px 24px}
 .pmeta .pk{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cian-deep);margin-bottom:6px}
 .pmeta h3{font-size:19px;margin:0 0 6px}
 .pmeta p{font-size:14px;color:var(--gris-ink)}
-.vid{position:relative;aspect-ratio:16/9;background:var(--navy);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.vid{position:relative;aspect-ratio:9/16;background:var(--navy);display:flex;align-items:center;justify-content:center;overflow:hidden}
 .vid img,.vid video,.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
 .vid .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(8,40,45,.28);border:none;cursor:pointer;transition:.2s var(--ease)}
 .vid .play:hover{background:rgba(8,40,45,.12)}
 .vid .play span{width:68px;height:68px;border-radius:50%;background:var(--cian);display:flex;align-items:center;justify-content:center}
 .vid .play svg{width:26px;height:26px;fill:var(--navy);margin-left:3px}
+.pmeta a.plink{display:inline-block;margin-top:10px;font-family:var(--font-label);font-weight:600;font-size:14px;color:var(--cian-deep);text-decoration:none}
+.pmeta a.plink:hover{text-decoration:underline}
+.vid .igtag{position:absolute;left:14px;top:14px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone);background:rgba(8,40,45,.6);border-radius:999px;padding:5px 10px}
 .vid--empty{color:var(--bone);font-family:var(--font-label);font-size:14px;opacity:.85}
 
 /* PREINSCRIPCIÓN */
@@ -189,7 +192,7 @@ em{font-style:normal;color:var(--cian-deep)}
 .beca li::before{content:"";flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:var(--cian);margin-top:8px}
 
 @media(max-width:860px){
-  .pgrid{grid-template-columns:1fr}
+  .pgrid{grid-template-columns:minmax(0,340px)}
   .pre-row{grid-template-columns:1fr}
   .vgrid{grid-template-columns:1fr}
   .days{grid-template-columns:1fr}
@@ -219,7 +222,7 @@ em{font-style:normal;color:var(--cian-deep)}
 <section class="hero" id="curso">
   <div class="wrap">
     <img class="hero-logo" src="./img/akkademy_horizontal.svg" alt="AKKADEMY">
-    <p class="edition">Próxima edición · Fecha y sede a confirmar</p>
+    <p class="edition">Edición 3 · Próximamente · Fecha y sede a confirmar</p>
     <h1>Formate como <em>piloto de dron aplicador</em></h1>
     <p class="hero-lede">Aprendé en 2 días lo que a nosotros nos costó 6.000 hectáreas trabajadas. Un día de teoría y negocio, y un día a campo donde <em>volás vos</em>.</p>
     <div class="facts">
@@ -230,7 +233,7 @@ em{font-style:normal;color:var(--cian-deep)}
     </div>
     <div class="cta-row">
       <a class="btn btn--primary" href="#preinscripcion">Preinscribite <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn--ghost" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(pr%C3%B3xima%20edici%C3%B3n)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> WhatsApp</a>
+      <a class="btn btn--ghost" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(Edici%C3%B3n%203)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> WhatsApp</a>
     </div>
   </div>
 </section>
@@ -289,7 +292,7 @@ em{font-style:normal;color:var(--cian-deep)}
         </ul>
       </article>
     </div>
-    <p class="cron-note">Este es el programa de la Edición 2 (Villa María). El de la próxima edición puede tener ajustes.</p>
+    <p class="cron-note">Este es el programa de la Edición 2 (Villa María). El de la Edición 3 puede tener ajustes.</p>
   </div>
 </section>
 
@@ -316,37 +319,41 @@ em{font-style:normal;color:var(--cian-deep)}
     <p class="lead">Así se vivió AKKADEMY: pilotos, campo y práctica real.</p>
     <div class="pgrid">
       <article class="pcard reveal">
-        <div class="vid vid--empty" data-yt="" data-src="" data-poster="">Video próximamente</div>
-        <div class="pmeta"><p class="pk">Edición 1</p><h3>Pergamino</h3><p>La primera edición del curso de Piloto de Dron Aplicador.</p></div>
+        <div class="vid" data-ig="DcyjANVpYp3"></div>
+        <div class="pmeta"><p class="pk">Edición 1</p><h3>Pergamino</h3><p>La primera edición del curso de Piloto de Dron Aplicador.</p><a class="plink" href="https://www.instagram.com/reel/DcyjANVpYp3/" target="_blank" rel="noopener">Ver en Instagram ↗</a></div>
       </article>
       <article class="pcard reveal">
-        <div class="vid vid--empty" data-yt="" data-src="" data-poster="">Video próximamente</div>
+        <div class="vid" data-src="./img/akkademy_edicion2_recap.mp4" data-poster="./img/akkademy_edicion2_poster.jpg"></div>
         <div class="pmeta"><p class="pk">Edición 2 · 30 y 31 de octubre de 2026</p><h3>Villa María, Córdoba</h3><p>Un día de teoría y negocio, y un día a campo donde volaron los alumnos.</p></div>
       </article>
     </div>
+    <p class="cron-note" style="color:var(--gris-ink);opacity:1">Más fotos y videos en <a href="https://www.instagram.com/akkademy.kairoo/" target="_blank" rel="noopener" style="color:var(--cian-deep);font-weight:600">@akkademy.kairoo</a></p>
   </div>
 </section>
 
 <section class="band enroll" id="preinscripcion" style="background:var(--bone-2)">
   <div class="wrap">
-    <h2>Sumate a la <em>próxima edición</em></h2>
+    <h2>Sumate a la <em>Edición 3</em></h2>
     <div class="split">
       <div class="panel beca reveal">
         <span class="tag">Preinscripción abierta</span>
         <h3>Todavía no hay fecha ni sede</h3>
-        <p>Estamos definiendo la próxima edición. Dejanos tus datos y sos de los primeros en enterarte cuando la confirmemos.</p>
+        <p>Estamos definiendo la Edición 3. Dejanos tus datos y sos de los primeros en enterarte cuando la confirmemos.</p>
         <ul>
           <li>Sin compromiso: preinscribirte no te obliga a nada.</li>
           <li>Te avisamos fecha, sede y valores antes de abrir la inscripción general.</li>
         </ul>
-        <a class="btn btn--primary" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(pr%C3%B3xima%20edici%C3%B3n)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> Prefiero escribir por WhatsApp</a>
+        <div class="cta-row" style="justify-content:flex-start;margin-top:auto">
+          <a class="btn btn--primary" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(Edici%C3%B3n%203)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> WhatsApp</a>
+          <a class="btn btn--ghost" href="https://www.instagram.com/akkademy.kairoo/" target="_blank" rel="noopener">Seguinos en Instagram</a>
+        </div>
       </div>
       <div class="panel inv reveal">
         <span class="tag">Formulario de preinscripción</span>
         <h3>Anotate acá</h3>
         <form class="pre-form" id="preForm" novalidate>
           <input type="hidden" name="access_key" value="ccc57100-e335-4996-aa84-f6678ca7a83d">
-          <input type="hidden" name="subject" value="Preinscripción AKKADEMY (próxima edición)">
+          <input type="hidden" name="subject" value="Preinscripción AKKADEMY (Edición 3)">
           <input type="hidden" name="from_name" value="Web AKKADEMY">
           <input type="checkbox" name="botcheck" class="pre-hp" tabindex="-1" autocomplete="off">
           <div><label for="pf-nombre">Nombre y apellido *</label><input id="pf-nombre" type="text" name="nombre" required autocomplete="name"></div>
@@ -378,19 +385,19 @@ em{font-style:normal;color:var(--cian-deep)}
 
 <section class="final">
   <div class="wrap">
-    <p class="k">Próxima edición · Fecha y sede a confirmar</p>
-    <h2>Preinscribite a la próxima edición</h2>
+    <p class="k">Edición 3 · Próximamente · Fecha y sede a confirmar</p>
+    <h2>Preinscribite a la Edición 3</h2>
     <p>Todavía no hay fecha ni sede. Dejanos tus datos y te avisamos primero.</p>
     <div class="cta-row">
       <a class="btn btn--primary" href="#preinscripcion">Preinscribite <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn--ghost" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(pr%C3%B3xima%20edici%C3%B3n)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> WhatsApp</a>
+      <a class="btn btn--ghost" href="https://wa.me/5493536563684?text=Hola%2C%20quiero%20info%20del%20Curso%20de%20Piloto%20de%20Dron%20Aplicador%20(Edici%C3%B3n%203)" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg> WhatsApp</a>
     </div>
   </div>
 </section>
 
 <section class="legal">
   <div class="wrap">
-    <span class="brand">AKKADEMY es la academia de pilotos de kairoo</span>
+    <span class="brand">AKKADEMY es la academia de pilotos de kairoo · <a href="https://www.instagram.com/akkademy.kairoo/" target="_blank" rel="noopener" style="color:inherit">@akkademy.kairoo</a></span>
     <p>Curso introductorio. No habilita por sí solo a operar drones: la habilitación se tramita ante ANAC. Se entrega certificado de participación AKKADEMY by Kairoo.</p>
   </div>
 </section>
@@ -406,16 +413,18 @@ document.querySelectorAll('.reveal').forEach(function(el){
 (function(){
   // Videos: YouTube (click-to-load) o mp4 propio
   document.querySelectorAll('.vid').forEach(function(v){
-    var yt=(v.dataset.yt||'').trim(), src=(v.dataset.src||'').trim(), poster=(v.dataset.poster||'').trim();
-    if(!yt&&!src)return;
+    var yt=(v.dataset.yt||'').trim(), ig=(v.dataset.ig||'').trim(), src=(v.dataset.src||'').trim(), poster=(v.dataset.poster||'').trim();
+    if(!yt&&!src&&!ig){v.classList.add('vid--empty');v.textContent='Video próximamente';return;}
     v.classList.remove('vid--empty'); v.textContent='';
     var thumb=poster||(yt?'https://i.ytimg.com/vi/'+yt+'/hqdefault.jpg':'');
+    if(ig){var tg=document.createElement('span');tg.className='igtag';tg.textContent='Instagram Reel';v.appendChild(tg);}
     if(thumb){var im=document.createElement('img');im.src=thumb;im.alt='Video de la edición';im.loading='lazy';v.appendChild(im);}
     var b=document.createElement('button');b.type='button';b.className='play';b.setAttribute('aria-label','Reproducir video');
     b.innerHTML='<span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
     b.addEventListener('click',function(){
       v.textContent='';
-      if(yt){var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+yt+'?autoplay=1&rel=0';f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.title='Video de la edición';v.appendChild(f);}
+      if(ig){var g=document.createElement('iframe');g.src='https://www.instagram.com/reel/'+ig+'/embed/';g.setAttribute('scrolling','no');g.allow='autoplay; encrypted-media; fullscreen';g.allowFullscreen=true;g.title='Reel de la edición';v.appendChild(g);}
+      else if(yt){var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+yt+'?autoplay=1&rel=0';f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.title='Video de la edición';v.appendChild(f);}
       else{var m=document.createElement('video');m.src=src;m.controls=true;m.autoplay=true;m.playsInline=true;if(poster)m.poster=poster;v.appendChild(m);}
     });
     v.appendChild(b);
