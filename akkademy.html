@@ -280,6 +280,14 @@ p{text-wrap:pretty}
 .pre-form input:focus,.pre-form select:focus{box-shadow:0 0 0 3px rgba(31,179,173,.22)}
 .pre-fine{margin-top:2px}
 
+
+.spons{display:flex;align-items:center;gap:10px;margin-top:12px;font-family:var(--font-label);font-size:13px;color:var(--gris-ink)}
+.spons img{height:26px;width:auto}
+.spons b{color:var(--navy);font-size:15px}
+.pre-int{border:1px solid var(--bone-3);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;margin:0;min-width:0}
+.pre-int legend{font-family:var(--font-label);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gris-ink);padding:0 6px}
+.chk{display:flex!important;align-items:center;gap:12px;margin:0!important;text-transform:none!important;letter-spacing:0!important;font-size:15px!important;font-weight:500!important;color:var(--navy)!important;cursor:pointer;min-height:36px}
+.chk input{width:20px!important;height:20px;min-height:0!important;padding:0!important;accent-color:var(--cian-deep);flex:0 0 auto}
 /* banda instagram */
 .final .wrap{text-align:center}
 .final .cta-row{justify-content:center}
@@ -410,11 +418,11 @@ p{text-wrap:pretty}
     <div class="pgrid">
       <article class="pcard reveal">
         <div class="vid vid--ig" data-ig="DcyjANVpYp3" data-label="Pergamino"></div>
-        <div class="pmeta"><p class="pk">Edición 1</p><h3>Pergamino</h3><p>La primera edición del curso de Piloto de Dron Aplicador.</p><a class="plink" href="https://www.instagram.com/reel/DcyjANVpYp3/" target="_blank" rel="noopener">Ver en Instagram ↗</a></div>
+        <div class="pmeta"><p class="pk">Edición 1</p><h3>Pergamino</h3><p>La primera edición del curso de Piloto de Dron Aplicador.</p><p class="spons">Con el apoyo de <b>Alltec</b></p><a class="plink" href="https://www.instagram.com/reel/DcyjANVpYp3/" target="_blank" rel="noopener">Ver en Instagram ↗</a></div>
       </article>
       <article class="pcard reveal">
         <div class="vid" data-src="./img/akkademy_edicion2_recap.mp4" data-poster="./img/akkademy_edicion2_poster.jpg"></div>
-        <div class="pmeta"><p class="pk">Edición 2 · 30 y 31 de octubre de 2026</p><h3>Villa María, Córdoba</h3><p>Un día de teoría y negocio, y un día a campo donde volaron los alumnos.</p></div>
+        <div class="pmeta"><p class="pk">Edición 2 · 30 y 31 de octubre de 2026</p><h3>Villa María, Córdoba</h3><p>Un día de teoría y negocio, y un día a campo donde volaron los alumnos.</p><p class="spons">Con el apoyo de <img src="./img/ally_agroadvance.png" alt="AgroAdvance"></p></div>
       </article>
     </div>
     <p class="cron-note" style="color:var(--gris-ink);opacity:1">Más fotos y videos en <a href="https://www.instagram.com/akkademy.kairoo/" target="_blank" rel="noopener" style="color:var(--cian-deep);font-weight:600">@akkademy.kairoo</a></p>
@@ -482,9 +490,14 @@ p{text-wrap:pretty}
               </select>
             </div>
           </div>
+          <fieldset class="pre-int">
+            <legend>También me interesa (opcional)</legend>
+            <label class="chk"><input type="checkbox" name="int_fotogrametria" value="si"><span>Curso de fotogrametría</span></label>
+            <label class="chk"><input type="checkbox" name="int_mantenimiento" value="si"><span>Curso de mantenimiento de drones</span></label>
+          </fieldset>
           <button class="btn btn--onlight" type="submit">Preinscribirme <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
           <div class="pre-status" id="preStatus" role="status" aria-live="polite"></div>
-          <p class="pre-fine">Usamos tus datos solo para avisarte de AKKADEMY.</p>
+          <p class="pre-fine">Usamos tus datos solo para avisarte de AKKADEMY y de los cursos que marques.</p>
         </form>
       </div>
     </div>
@@ -545,10 +558,18 @@ document.querySelectorAll('.reveal').forEach(function(el){
     var n=form.nombre.value.trim(), t=form.telefono.value.trim(), l=form.localidad.value.trim();
     if(!n||!t||!l){st.className='pre-status err';st.textContent='Completá nombre, WhatsApp y localidad.';return;}
     var label=btn.firstChild.textContent; btn.disabled=true; btn.firstChild.textContent='Enviando… ';
-    fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(form)})
-      .then(function(r){return r.json();})
-      .then(function(d){
-        if(!d.success)throw new Error();
+    var fd=new FormData(form), ints=[];
+    if(form.int_fotogrametria.checked)ints.push('Fotogrametría');
+    if(form.int_mantenimiento.checked)ints.push('Mantenimiento de drones');
+    fd.append('intereses_extra',ints.join(', ')||'ninguno');
+    var row={nombre:n,telefono:t,email:form.email.value.trim()||null,localidad:l,perfil:form.perfil.value||null,
+      interes_fotogrametria:form.int_fotogrametria.checked,interes_mantenimiento:form.int_mantenimiento.checked};
+    var SB='https://tyepeicufwoopooopywp.supabase.co/rest/v1/akkademy_preinscripciones', KEY='sb_publishable_dzOdWu2IxWHtNzh_kCdwDA_a222VVlM';
+    var saveDb=fetch(SB,{method:'POST',headers:{'Content-Type':'application/json',apikey:KEY,Authorization:'Bearer '+KEY,Prefer:'return=minimal'},body:JSON.stringify(row)}).then(function(r){return r.ok;}).catch(function(){return false;});
+    var sendMail=fetch('https://api.web3forms.com/submit',{method:'POST',body:fd}).then(function(r){return r.json();}).then(function(d){return !!d.success;}).catch(function(){return false;});
+    Promise.all([saveDb,sendMail])
+      .then(function(rs){
+        if(!rs[0]&&!rs[1])throw new Error();
         st.className='pre-status ok';st.textContent='¡Listo! Quedaste preinscripto/a. Te escribimos apenas confirmemos fecha y sede.';
         form.reset();
       })
